@@ -1,0 +1,112 @@
+"""Write the deterministic TrailSip seed used by the browser demo.
+
+Python is optional for frontend development. Run: python scripts/generate_mock_data.py
+"""
+
+import json
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUTPUT = ROOT / "src" / "data" / "scenario.json"
+
+SCENARIO = {
+    "metadata": {
+        "id": "SCN-TRAILSIP-BTS-2026",
+        "name": "TrailSip Back-to-School",
+        "company": "TrailSip",
+        "description": "A fictional retailer prepares reusable bottles for a Back-to-School promotion.",
+        "fictional": True,
+        "scenarioDate": "2026-08-12",
+        "promotionDate": "2026-08-24",
+        "heroSku": "TS-600",
+        "heroOrderId": "ORD-1001",
+        "heroPurchaseOrderId": "PO-1001",
+        "heroGoodsReceiptId": "RCPT-1001",
+        "heroShipmentId": "SHP-1001",
+        "replenishmentApproved": False,
+        "timeline": {
+            "demandReviewedAt": "2026-08-12T10:00:00.000Z",
+            "purchaseOrderConfirmedAt": "2026-08-13T14:00:00.000Z",
+            "receiptPostedAt": "2026-08-18T09:30:00.000Z",
+            "salesOrderPlacedAt": "2026-08-19T08:05:00.000Z",
+            "pickStartedAt": "2026-08-19T09:00:00.000Z",
+            "pickCompletedAt": "2026-08-19T09:30:00.000Z",
+            "packCompletedAt": "2026-08-19T09:45:00.000Z",
+            "shipmentDispatchedAt": "2026-08-20T10:00:00.000Z",
+            "shipmentInTransitAt": "2026-08-20T10:15:00.000Z",
+            "shipmentOutForDeliveryAt": "2026-08-22T08:05:00.000Z",
+            "shipmentDeliveredAt": "2026-08-22T13:42:00.000Z",
+        },
+    },
+    "products": [
+        {"id": "PROD-TS600", "sku": "TS-600", "name": "Everyday 600", "sizeMl": 600, "active": True},
+        {"id": "PROD-TS1000", "sku": "TS-1000", "name": "Adventure 1000", "sizeMl": 1000, "active": True},
+        {"id": "PROD-TS350", "sku": "TS-350", "name": "Junior 350", "sizeMl": 350, "active": True},
+    ],
+    "suppliers": [
+        {"id": "SUP-1001", "name": "ClearPeak Manufacturing", "fictional": True},
+    ],
+    "warehouses": [
+        {"id": "WH-1001", "name": "TrailSip Distribution Center"},
+    ],
+    "locations": [
+        {"id": "LOC-A0302", "warehouseId": "WH-1001", "code": "A-03-02", "zone": "A"},
+    ],
+    "forecasts": [
+        {"id": "FC-TS600-BTS", "sku": "TS-600", "periodStart": "2026-08-24", "periodEnd": "2026-08-31", "forecastQty": 120, "targetEndingQty": 20},
+        {"id": "FC-TS1000-BTS", "sku": "TS-1000", "periodStart": "2026-08-24", "periodEnd": "2026-08-31", "forecastQty": 45, "targetEndingQty": 10},
+        {"id": "FC-TS350-BTS", "sku": "TS-350", "periodStart": "2026-08-24", "periodEnd": "2026-08-31", "forecastQty": 70, "targetEndingQty": 15},
+    ],
+    "purchaseOrders": [
+        {"id": "PO-1001", "supplierId": "SUP-1001", "status": "DRAFT", "orderedAt": "2026-08-13T14:00:00.000Z", "expectedAt": "2026-08-18T09:30:00.000Z", "sourceForecastId": "FC-TS600-BTS"},
+    ],
+    "purchaseOrderLines": [
+        {"id": "PO-L1001", "poId": "PO-1001", "sku": "TS-600", "quantity": 100},
+    ],
+    "goodsReceipts": [
+        {"id": "RCPT-1001", "poId": "PO-1001", "status": "EXPECTED", "receivedAt": None},
+    ],
+    "goodsReceiptLines": [
+        {"id": "RCPT-L1001", "receiptId": "RCPT-1001", "sku": "TS-600", "quantity": 100, "locationId": "LOC-A0302"},
+    ],
+    "inventory": [
+        {"id": "INV-WH1001-TS600", "warehouseId": "WH-1001", "sku": "TS-600", "onHand": 40, "reserved": 0},
+        {"id": "INV-WH1001-TS1000", "warehouseId": "WH-1001", "sku": "TS-1000", "onHand": 60, "reserved": 0},
+        {"id": "INV-WH1001-TS350", "warehouseId": "WH-1001", "sku": "TS-350", "onHand": 95, "reserved": 0},
+    ],
+    "customers": [
+        {"id": "CUST-1001", "name": "Alex Morgan", "fictional": True},
+    ],
+    "salesOrders": [
+        {"id": "ORD-1001", "customerId": "CUST-1001", "status": "NEW", "placedAt": "2026-08-19T08:05:00.000Z", "promisedBy": "2026-08-22"},
+    ],
+    "salesOrderLines": [
+        {"id": "SO-L1001", "orderId": "ORD-1001", "sku": "TS-600", "quantity": 2},
+    ],
+    "reservations": [],
+    "pickTasks": [
+        {"id": "PICK-1001", "orderId": "ORD-1001", "sku": "TS-600", "locationId": "LOC-A0302", "requiredQty": 2, "pickedQty": 0, "status": "NOT_STARTED"},
+    ],
+    "packTasks": [
+        {"id": "PACK-1001", "orderId": "ORD-1001", "packageId": "PKG-1001", "status": "WAITING"},
+    ],
+    "carriers": [
+        {"id": "CAR-1001", "name": "SwiftLine Parcel", "fictional": True},
+    ],
+    "shipments": [
+        {"id": "SHP-1001", "orderId": "ORD-1001", "carrierId": "CAR-1001", "status": "PLANNED", "dispatchAt": None, "deliveryAt": None, "packageId": "PKG-1001"},
+    ],
+    "trackingEvents": [],
+    "activityEvents": [],
+}
+
+
+def main() -> None:
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(json.dumps(SCENARIO, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote deterministic scenario data to {OUTPUT.relative_to(ROOT)}")
+
+
+if __name__ == "__main__":
+    main()
