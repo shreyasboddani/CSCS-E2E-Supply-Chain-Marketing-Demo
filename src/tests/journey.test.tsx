@@ -5,7 +5,7 @@ import { appRoutes } from "../app/router";
 import { useDemoStore } from "../store/demoStore";
 
 const routes = [
-  ["/intro", /Can TrailSip keep its Back-to-School promise/],
+  ["/intro", /One supply chain story, from plan to delivery/],
   ["/demand", "Demand Planning"],
   ["/sourcing", "Sourcing"],
   ["/inbound", "Inbound & Warehouse"],

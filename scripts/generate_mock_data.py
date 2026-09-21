@@ -1,4 +1,4 @@
-"""Write the deterministic TrailSip seed used by the browser demo.
+"""Write the deterministic retail scenario seed used by the browser demo.
 
 Python is optional for frontend development. Run: python scripts/generate_mock_data.py
 """
@@ -12,10 +12,10 @@ OUTPUT = ROOT / "src" / "data" / "scenario.json"
 
 SCENARIO = {
     "metadata": {
-        "id": "SCN-TRAILSIP-BTS-2026",
-        "name": "TrailSip Back-to-School",
-        "company": "TrailSip",
-        "description": "A fictional retailer prepares reusable bottles for a Back-to-School promotion.",
+        "id": "SCN-RETAIL-BTS-2026",
+        "name": "Seasonal retail replenishment",
+        "company": "Retail demo",
+        "description": "A fictional retail operation prepares reusable bottles for a Back-to-School promotion.",
         "fictional": True,
         "scenarioDate": "2026-08-12",
         "promotionDate": "2026-08-24",
@@ -48,7 +48,7 @@ SCENARIO = {
         {"id": "SUP-1001", "name": "ClearPeak Manufacturing", "fictional": True},
     ],
     "warehouses": [
-        {"id": "WH-1001", "name": "TrailSip Distribution Center"},
+        {"id": "WH-1001", "name": "East Distribution Center"},
     ],
     "locations": [
         {"id": "LOC-A0302", "warehouseId": "WH-1001", "code": "A-03-02", "zone": "A"},

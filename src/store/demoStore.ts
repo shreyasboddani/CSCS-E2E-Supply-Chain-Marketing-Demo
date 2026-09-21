@@ -54,7 +54,7 @@ export const useDemoStore = create<DemoStore>()(
       resetScenario: () => set({ scenario: getResetScenario() }),
     }),
     {
-      name: "cscs-trailsip-demo-session-v1",
+      name: "cscs-scoti-demo-session-v1",
       version: 1,
       storage: createJSONStorage(() => window.sessionStorage),
       partialize: (state) => ({ scenario: state.scenario, mode: state.mode }),

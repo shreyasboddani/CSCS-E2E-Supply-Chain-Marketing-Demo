@@ -32,9 +32,10 @@ export function DemoShell() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <Link to="/intro" className="brand-lockup" aria-label="TrailSip concept demo home">
-          <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-          <span className="brand-copy"><strong>TRAILSIP</strong><small>SUPPLY CHAIN CONCEPT</small></span>
+        <Link to="/intro" className="brand-lockup" aria-label="CSCS SCOTI concept demo home">
+          <img className="cscs-logo" src="/brand/cscs-logo.svg" alt="CSCS" />
+          <span className="brand-divider" aria-hidden="true" />
+          <span className="brand-copy"><strong>SCOTI<sup>™</sup></strong><small>END-TO-END DEMO</small></span>
         </Link>
         <div className="topbar-context">
           <span className="context-label">SCENARIO</span>
@@ -55,7 +56,7 @@ export function DemoShell() {
 
       <div className="shell-body">
         <aside className="sidebar">
-          <div className="workspace-label"><span className="workspace-mark">TS</span><div><strong>{scenario.metadata.company} Ops</strong><small>DEMO WORKSPACE</small></div></div>
+          <div className="workspace-label"><span className="workspace-mark" aria-hidden="true">S</span><div><strong>SCOTI™ journey</strong><small>CONCEPT WORKSPACE</small></div></div>
           <JourneyProgress completedStages={progress.completedStages} />
           <div className="sidebar-bottom">
             <span className="sidebar-scenario-label">SCENARIO SCOPE</span>
@@ -82,7 +83,7 @@ export function DemoShell() {
       <Modal
         open={resetOpen}
         title="Reset this demo?"
-        description="This restores the exact initial TrailSip scenario and clears any progress saved in this browser session."
+        description="This restores the exact initial demo scenario and clears any progress saved in this browser session."
         onClose={closeResetDialog}
       >
         <Button variant="primary" onClick={confirmReset}>Reset to start</Button>

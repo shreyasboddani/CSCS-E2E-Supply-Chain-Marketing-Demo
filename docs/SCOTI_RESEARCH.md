@@ -1,6 +1,6 @@
 # SCOTI research boundaries
 
-Research checked 2026-09-21 against CSCS’s publicly accessible website. Public product language can change; recheck before a presentation or publication. This document summarizes public positioning and separates it from the invented TrailSip experience.
+Research checked 2026-09-21 against CSCS’s publicly accessible website and the supplied brand reference. Public product language and web assets can change; recheck before a presentation or publication. This document summarizes public positioning and separates it from the simulated retail scenario.
 
 ## Verified public claims
 
@@ -10,6 +10,7 @@ Research checked 2026-09-21 against CSCS’s publicly accessible website. Public
 - CSCS describes TMS functions including transportation planning, routing, carrier selection, dispatch, and tracking. Source: [Transportation Management](https://cscs.io/transportation-management/).
 - CSCS describes integrations connecting operational systems and a visibility/control-tower layer. Sources: [CSCS platform page](https://cscs.io/ai-supply-chain-platform/) and [Services](https://cscs.io/services/).
 - The pages reviewed describe connected order information and integration across systems. They do not establish that this demo’s invented order screen, purchasing flow, state machine, or visual design is a production SCOTI interface.
+- The official CSCS website serves its logo at [cscs-logo.svg](https://cscs.io/wp-content/uploads/2025/08/cscs-logo.svg). The supplied project reference shows the CSCS and SCOTI™ lockup with indigo, blue, and teal accents. These assets and colors identify this concept demo only.
 
 ## Demo interpretation
 
@@ -20,14 +21,12 @@ Research checked 2026-09-21 against CSCS’s publicly accessible website. Public
 
 ## Fictional demo behavior
 
-TrailSip, all people and organizations, product/order/PO/receipt/shipment identifiers, forecast values, inventory balances, carrier, warehouse location, statuses, timestamps, dashboard values, and all UI screens are simulated. Deterministic browser-only transitions illustrate a concept and do not claim to reproduce CSCS algorithms, integrations, screens, or operational outcomes.
+The unnamed retail operation, all people and organizations, product/order/PO/receipt/shipment identifiers, forecast values, inventory balances, carrier, warehouse location, statuses, timestamps, dashboard values, and all UI screens are simulated. Deterministic browser-only transitions illustrate a concept and do not claim to reproduce CSCS algorithms, integrations, screens, or operational outcomes.
 
 ## Open questions for mentors
 
 - Is React + TypeScript approved in place of the handbook’s Python + Streamlit recommendation?
 - Is a Python-generated JSON seed an acceptable compatibility artifact?
-- Which CSCS/SCOTI names, trademark treatment, logos, fonts, and colors are approved for an intern concept demo?
 - Should all AI/agentic references remain outside v1 UI copy?
 - Is the repository or any hosted demo allowed to be public?
-- Is the TrailSip scenario approved for external presentation?
 - Is there an approved public product source that should replace the research links above?

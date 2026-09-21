@@ -2,24 +2,29 @@
 
 ## Philosophy
 
-Create original, provisional enterprise operations software: precise, industrial, modern, information-rich, and calm. Supply-chain clarity and the continuity of the hero quantities matter more than decorative technology. These tokens are not official CSCS brand colors or assets.
+Create original enterprise operations software for a CSCS / SCOTI™ concept demonstration: precise, calm, modern, and information-rich. Use the supplied CSCS logo and the brand palette below to identify the demo, while keeping application screens original and distinct from the production SCOTI interface.
 
-## Provisional tokens
+## CSCS / SCOTI color tokens
 
 | Token | Value | Use |
 | --- | --- | --- |
-| Canvas | #071015 | Main application background |
-| Surface | #0d171d | Sidebars and primary panels |
-| Elevated | #132027 | Inputs, cards, selected navigation |
-| Primary text | #f2f7f8 | Headings and key values |
-| Muted text | #90a1a8 | Supporting labels |
-| Accent | #28c6b6 | Key focus and active journey state, used sparingly |
-| Positive | #54cf91 | Success status |
+| CSCS indigo | #191446 | Corporate wordmark and deep brand anchor |
+| CSCS navy | #0e1941 | Navigation and deep interface surfaces |
+| SCOTI blue | #3a78ff | Primary action, active journey, and focus |
+| SCOTI teal | #00b49d | Secondary accent and connected-flow signal |
+| Mint | #e0f2f1 | Pale contrast color from the CSCS logo |
+| Canvas | #0a0c1b | Main application background |
+| Surface | #101329 | Sidebars and primary panels |
+| Elevated | #171b37 | Inputs, cards, selected navigation |
+| Primary text | #f5f6ff | Headings and key values |
+| Muted text | #9ba2bf | Supporting labels |
+| Accent | #3a78ff | Key focus and active journey state |
+| Positive | #2dc6aa | Success status |
 | Warning | #deb85e | Pending status |
 | Danger | #e17373 | Error status |
-| Line | rgba(255,255,255,.09) | Dividers and outlines |
+| Line | rgba(224,242,241,.11) | Dividers and outlines |
 
-CSS custom properties live in src/styles/tokens.css. Do not claim they match official brand guidelines before mentor approval.
+CSS custom properties live in src/styles/tokens.css. The CSCS logo asset is stored locally at public/brand/cscs-logo.svg and was sourced from the official [CSCS website](https://cscs.io/wp-content/uploads/2025/08/cscs-logo.svg). Keep its proportions and colors intact; use it on a light field. The palette is based on the supplied reference and public logo/site colors, not a claim that this interface is a production SCOTI design.
 
 ## Typography
 

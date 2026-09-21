@@ -7,7 +7,7 @@ export function StageHeader({ stageId }: { stageId: StageId }) {
   return (
     <header className="stage-header">
       <div>
-        <div className="stage-eyebrow">{stage.eyebrow}<span className="stage-divider">/</span> TRAILSIP BTS</div>
+        <div className="stage-eyebrow">{stage.eyebrow}<span className="stage-divider">/</span> SCOTI™ CONCEPT DEMO</div>
         <h1>{stage.label}</h1>
         <p>{stage.purpose}</p>
       </div>

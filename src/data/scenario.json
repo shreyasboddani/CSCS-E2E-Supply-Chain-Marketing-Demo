@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "id": "SCN-TRAILSIP-BTS-2026",
-    "name": "TrailSip Back-to-School",
-    "company": "TrailSip",
-    "description": "A fictional retailer prepares reusable bottles for a Back-to-School promotion.",
+    "id": "SCN-RETAIL-BTS-2026",
+    "name": "Seasonal retail replenishment",
+    "company": "Retail demo",
+    "description": "A fictional retail operation prepares reusable bottles for a Back-to-School promotion.",
     "fictional": true,
     "scenarioDate": "2026-08-12",
     "promotionDate": "2026-08-24",
@@ -60,7 +60,7 @@
   "warehouses": [
     {
       "id": "WH-1001",
-      "name": "TrailSip Distribution Center"
+      "name": "East Distribution Center"
     }
   ],
   "locations": [

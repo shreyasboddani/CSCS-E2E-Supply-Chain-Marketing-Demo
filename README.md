@@ -1,6 +1,6 @@
 # CSCS / SCOTI™ End-to-End Supply Chain Demo
 
-An intern-built, browser-only concept demo that follows one fictional TrailSip scenario from promotion demand through supplier replenishment, warehouse receipt, customer order, fulfillment, shipment, and delivery visibility.
+An intern-built, browser-only CSCS / SCOTI™ concept demo that follows one simulated retail supply-chain scenario from promotion demand through replenishment, warehouse receipt, fulfillment, shipment, and delivery visibility.
 
 > Intern Concept Demo · Fictional business and operational data · Original interface · Built to illustrate connected supply-chain concepts informed by CSCS’s publicly described capabilities.
 
@@ -8,15 +8,19 @@ This is an original concept interface. It does not reproduce production SCOTI sc
 
 ## Hero scenario
 
-TrailSip is preparing for a fictional Back-to-School promotion. The TS-600 forecast is 120 units, target ending stock is 20, and initial available inventory is 40, so the replenishment requirement is 100.
+The simulated retailer is preparing for a Back-to-School promotion. The TS-600 forecast is 120 units, target ending stock is 20, and initial available inventory is 40, so the replenishment requirement is 100.
 
 - PO-1001 brings 100 × TS-600 from fictional supplier ClearPeak Manufacturing.
-- RCPT-1001 receives those units into A-03-02 at TrailSip Distribution Center.
+- RCPT-1001 receives those units into A-03-02 at East Distribution Center.
 - ORD-1001 connects fictional customer Alex Morgan to 2 × TS-600.
 - SHP-1001 carries the order through fictional carrier SwiftLine Parcel in package PKG-1001.
 - Inventory follows one shared equation: available = on hand − reserved.
 
 Scenario quantities, identifiers, lifecycle states, and dates are locked in docs/PROJECT_CONTRACT.md.
+
+## Brand direction
+
+The app uses the CSCS logo supplied for this project and a SCOTI™ wordmark lockup. The indigo, blue, and teal palette is drawn from the supplied brand reference and the official [CSCS website](https://cscs.io/). The journey UI remains an original intern concept and is not a production SCOTI screen.
 
 ## Architecture
 
@@ -40,7 +44,7 @@ Three.js / React Three Fiber is an optional future extension. The initial experi
 | --- | --- |
 | docs/PROJECT_CONTRACT.md | Locked product, scenario, business rules, and definition of done |
 | docs/DATA_MODEL.md | Entities, relationships, status values, invariants, and event model |
-| docs/DESIGN_SYSTEM.md | Provisional theme, reusable patterns, motion, and accessibility |
+| docs/DESIGN_SYSTEM.md | CSCS / SCOTI brand palette, reusable patterns, motion, and accessibility |
 | docs/DEMO_SCRIPT.md | Planned seven-minute presentation narrative |
 | docs/SCOTI_RESEARCH.md | Verified public claims separated from demo interpretation and fiction |
 | docs/DECISIONS.md | Framework and architecture decisions awaiting or following mentor review |

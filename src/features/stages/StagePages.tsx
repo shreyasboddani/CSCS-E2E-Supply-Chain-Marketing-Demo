@@ -111,9 +111,9 @@ export function IntroPage() {
     <StageFrame stageId="intro">
       <section className="intro-hero">
         <div className="intro-copy">
-          <span className="overline"><span className="live-marker" /> FICTIONAL RETAIL SCENARIO</span>
-          <h2>Can {scenario.metadata.company} keep its <em>Back-to-School</em> promise?</h2>
-          <p>Demand is rising. Inventory, supplier commitments, warehouse work, and delivery need to move as one connected flow.</p>
+          <span className="overline"><span className="live-marker" /> CSCS · SCOTI™ END-TO-END CONCEPT</span>
+          <h2>One supply chain story, from <em>plan to delivery.</em></h2>
+          <p>Follow one simulated product through a Back-to-School demand signal, replenishment, warehouse execution, fulfillment, and delivery visibility.</p>
           <div className="intro-actions">
             <Link className="button button--primary" to="/demand">Begin guided journey <span aria-hidden="true">→</span></Link>
             <span className="duration-note">ABOUT 7 MINUTES <span aria-hidden="true">·</span> 8 STAGES</span>
@@ -371,7 +371,7 @@ export function ShipmentPage() {
             return <li className={(complete ? "milestone milestone--complete " : "milestone ") + (current ? "milestone--current" : "")} key={milestone.status}><span className="milestone-dot">{complete ? "✓" : ""}</span><span>{milestone.label}</span><small>{formatCompactDate(trackingEvents.find((event) => event.type === milestone.status)?.timestamp ?? milestone.at)}</small></li>;
           })}
         </ol>
-        <div className="shipment-route"><span>TRAILSIP DISTRIBUTION CENTER</span><i /><strong>{trackingEvents.at(-1)?.locationLabel ?? "Destination pending"}</strong></div>
+        <div className="shipment-route"><span>{scenario.warehouses[0]?.name ?? "Origin warehouse"}</span><i /><strong>{trackingEvents.at(-1)?.locationLabel ?? "Destination pending"}</strong></div>
       </Card>
       <Surface className="foundation-note"><span className="note-mark">i</span><p>All carrier and tracking information is fictional scenario data. No external carrier service or map is connected.</p></Surface>
     </StageFrame>

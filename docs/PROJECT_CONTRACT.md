@@ -17,7 +17,7 @@ Build a self-contained, deterministic, browser-only 5–10 minute concept demons
 
 ## Fictional scenario and locked identifiers
 
-TrailSip is a fictional retailer selling reusable bottles online. It has one TrailSip Distribution Center and is preparing for a Back-to-School promotion.
+The demo follows a fictional, unnamed retailer selling reusable bottles online. The simulated operation has one East Distribution Center and is preparing for a Back-to-School promotion. The UI is branded as a CSCS / SCOTI™ concept demo; the retailer is not presented as CSCS's own business.
 
 | Kind | Canonical value |
 | --- | --- |
@@ -28,7 +28,7 @@ TrailSip is a fictional retailer selling reusable bottles online. It has one Tra
 | Supplier/PO | ClearPeak Manufacturing (fictional); PO-1001 |
 | PO line | 100 × TS-600 |
 | Receipt | RCPT-1001 |
-| Warehouse/location | TrailSip Distribution Center; A-03-02 |
+| Warehouse/location | East Distribution Center; A-03-02 |
 | Shipment/carrier/package | SHP-1001; SwiftLine Parcel (fictional); PKG-1001 |
 
 ## Quantities and inventory rules
@@ -82,7 +82,7 @@ Backorders, partial or split shipments, returns, cancellations, damaged stock, r
 
 ## Branding and disclosure
 
-Use an original provisional visual theme. Do not describe its colors or interface as official CSCS/SCOTI branding. Display this disclosure unobtrusively in the shared shell:
+Use the CSCS logo supplied for the project and the CSCS / SCOTI indigo, blue, and teal palette documented in docs/DESIGN_SYSTEM.md. Keep the product screens original: do not claim they are production SCOTI screens or reproduce undocumented functions. Display this disclosure unobtrusively in the shared shell:
 
 > Intern Concept Demo · Fictional business and operational data · Original interface · Built to illustrate connected supply-chain concepts informed by CSCS’s publicly described capabilities.
 
@@ -102,7 +102,7 @@ Operational clarity, connected quantitative state, precise hierarchy, high infor
 
 ## Definition of done
 
-All eight routes render in the shared shell, use the same canonical state, and provide working journey navigation and reset. Scenario math and lifecycle transitions satisfy this contract. Docs, Python generator, tests, CI, and accessible responsive starter UI are kept in sync. All four validation commands pass. Mentor approval is still needed for framework choice, brand assets/tokens, and any public deployment.
+All eight routes render in the shared shell, use the same canonical state, and provide working journey navigation and reset. Scenario math and lifecycle transitions satisfy this contract. Docs, Python generator, tests, CI, and accessible responsive starter UI are kept in sync. All four validation commands pass. Mentor approval is still needed for framework choice and any public deployment.
 
 ## Change rule
 

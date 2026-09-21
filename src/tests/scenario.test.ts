@@ -12,7 +12,7 @@ import {
 import { getScenarioInvariantViolations } from "../domain/invariants";
 import type { DemoScenario } from "../domain/types";
 
-describe("canonical TrailSip scenario", () => {
+describe("canonical retail demo scenario", () => {
   it("starts with 40 on hand, 0 reserved, and 40 available for TS-600", () => {
     const inventory = getHeroInventory(initialScenario);
     expect(inventory).toMatchObject({ onHand: 40, reserved: 0 });

@@ -4,7 +4,7 @@ The target walkthrough is about seven minutes. Every displayed date is part of t
 
 | Time | Stage | Presenter cue |
 | --- | --- | --- |
-| 0:00–0:30 | Intro | “Can TrailSip keep its Back-to-School promise? Demand is rising, and one connected journey will show what happens next.” |
+| 0:00–0:30 | Intro | “This SCOTI™ concept demo follows one simulated retail operation from its Back-to-School demand signal through delivery. Each stage carries the same scenario forward.” |
 | 0:30–1:30 | Demand | “The forecast is 120. With 40 available and a target of 20, the replenishment gap is 100.” |
 | 1:30–2:15 | Sourcing | “That requirement becomes PO-1001: 100 Everyday 600 bottles from fictional supplier ClearPeak Manufacturing.” |
 | 2:15–3:15 | Inbound | “Receipt RCPT-1001 places those units in A-03-02. The same inventory balance now shows 140 on hand.” |

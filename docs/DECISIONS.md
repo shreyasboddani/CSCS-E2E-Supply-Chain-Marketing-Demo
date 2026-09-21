@@ -29,3 +29,9 @@
 **Status:** Accepted for foundation
 **Decision:** Prepare an extension point only; do not add WebGL dependencies to the foundation.
 **Reason:** The story and UI must work fully without 3D.
+
+## Decision 006 — CSCS / SCOTI™ brand direction
+
+**Status:** Applied to concept demo
+**Decision:** Use the supplied CSCS logo, a SCOTI™ product lockup, and the indigo / blue / teal palette with a generic fictional retail scenario.
+**Reason:** This is a CSCS / SCOTI marketing concept demo rather than a customer-branded prototype. Screens remain original and simulated.
