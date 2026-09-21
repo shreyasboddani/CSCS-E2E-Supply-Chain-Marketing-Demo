@@ -9,6 +9,9 @@ Research checked 2026-09-21 against CSCS’s publicly accessible website and the
 - CSCS describes WMS concepts including inventory visibility, inbound/outbound operations, task-driven workflows, and fulfillment. Source: [CSCS platform page](https://cscs.io/ai-supply-chain-platform/).
 - CSCS describes TMS functions including transportation planning, routing, carrier selection, dispatch, and tracking. Source: [Transportation Management](https://cscs.io/transportation-management/).
 - CSCS describes integrations connecting operational systems and a visibility/control-tower layer. Sources: [CSCS platform page](https://cscs.io/ai-supply-chain-platform/) and [Services](https://cscs.io/services/).
+- CSCS presents SCOTI as an operating layer across transportation, warehouse operations, planning, integrations, and real-time decisioning. Its public platform page groups capabilities into TMS, WMS, Visibility Hub, Integration Hub, and IoT Intelligence. Source: [AI Supply Chain Platform](https://cscs.io/ai-supply-chain-platform/).
+- CSCS describes a connected workflow from purchase order to delivery, with event-driven integration and shared operational visibility. Source: [The SCOTI Platform](https://cscs.io/the-scoti-platform-intelligence-autonomy-end-to-end-supply-chain-control/).
+- CSCS publicly describes human-in-the-loop review for high-impact agent actions. The demo therefore uses explicit viewer-controlled buttons for simulated lifecycle steps rather than autonomous actions. Source: [The SCOTI Platform](https://cscs.io/the-scoti-platform-intelligence-autonomy-end-to-end-supply-chain-control/).
 - The pages reviewed describe connected order information and integration across systems. They do not establish that this demo’s invented order screen, purchasing flow, state machine, or visual design is a production SCOTI interface.
 - The official CSCS website serves its logo at [cscs-logo.svg](https://cscs.io/wp-content/uploads/2025/08/cscs-logo.svg). The supplied project reference shows the CSCS and SCOTI™ lockup with indigo, blue, and teal accents. These assets and colors identify this concept demo only.
 
@@ -18,6 +21,7 @@ Research checked 2026-09-21 against CSCS’s publicly accessible website and the
 - Treat a purchase order as a connected workflow/data object. Do not claim that the demo depicts a dedicated SCOTI purchasing module or production PO screen.
 - Treat ORD-1001 as connected order information flowing into execution, not as evidence of a standalone SCOTI OMS screen.
 - Treat Control Tower as a connected visibility/orchestration concept; the demo timeline and interaction are invented.
+- Treat the guided action bar as a presentation aid that makes the connected story walkable. It is not a claim that production SCOTI uses these exact controls or screens.
 
 ## Fictional demo behavior
 

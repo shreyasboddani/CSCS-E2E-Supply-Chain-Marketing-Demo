@@ -19,6 +19,7 @@ import { NarrativeRail } from "../../components/narrative/NarrativeRail";
 import { Timeline } from "../../components/narrative/Timeline";
 import { ConnectedThread } from "../../components/ui/ConnectedThread";
 import { StageHeader } from "../../components/ui/StageHeader";
+import { StageAction } from "../../components/ui/StageAction";
 import { formatCompactDate, formatScenarioDate } from "../../utils/dates";
 import {
   Card,
@@ -151,6 +152,7 @@ export function IntroPage() {
 
 export function DemandPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const approveReplenishment = useDemoStore((state) => state.approveReplenishment);
   const forecast = getHeroForecast(scenario);
   const balance = getHeroInventory(scenario);
   const available = balance ? getAvailableInventory(balance) : 0;
@@ -190,12 +192,20 @@ export function DemandPage() {
         <SectionHeader title="Product plan" trailing={<span className="table-note">3 SKUs · simulated</span>} />
         <ProductDemandTable />
       </Card>
+      <StageAction
+        label="Approve replenishment"
+        completedLabel="Replenishment approved"
+        helper="Approve the 100-unit requirement so it can become a supplier commitment."
+        completed={scenario.metadata.replenishmentApproved}
+        onAction={approveReplenishment}
+      />
     </StageFrame>
   );
 }
 
 export function SourcingPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const confirmPurchaseOrder = useDemoStore((state) => state.confirmPurchaseOrder);
   const po = getHeroPurchaseOrder(scenario);
   const supplier = scenario.suppliers.find((item) => item.id === po?.supplierId);
   const line = scenario.purchaseOrderLines.find((item) => item.poId === po?.id);
@@ -226,12 +236,21 @@ export function SourcingPage() {
         <div className="commitment-footer"><span>Source forecast <OperationalId>{forecast?.id ?? "—"}</OperationalId></span><span>Expected at warehouse <OperationalId>{location?.code ?? "—"}</OperationalId></span></div>
       </Card>
       <div className="foundation-note"><span className="note-mark">i</span><p>This is a connected purchase-order concept in an original demo flow. It does not represent a production SCOTI purchasing screen.</p></div>
+      <StageAction
+        label="Confirm PO-1001"
+        completedLabel="PO-1001 confirmed"
+        helper={po?.status === "DRAFT" ? "Confirm the commitment to release the replenishment into inbound execution." : "The supplier commitment is ready for the warehouse receipt step."}
+        completed={po?.status !== "DRAFT"}
+        disabled={!scenario.metadata.replenishmentApproved}
+        onAction={confirmPurchaseOrder}
+      />
     </StageFrame>
   );
 }
 
 export function InboundPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const receivePurchaseOrder = useDemoStore((state) => state.receivePurchaseOrder);
   const receipt = getHeroGoodsReceipt(scenario);
   const line = scenario.goodsReceiptLines.find((item) => item.receiptId === receipt?.id);
   const balance = line ? scenario.inventory.find((item) => item.sku === line.sku) : undefined;
@@ -265,12 +284,21 @@ export function InboundPage() {
         </div>
         {balance && <MetricDelta before={balance.onHand} after={afterReceipt} label="Planned receipt effect" />}
       </Card>
+      <StageAction
+        label="Post goods receipt"
+        completedLabel="Receipt posted"
+        helper="Post RCPT-1001 once to add the 100 units to warehouse inventory."
+        completed={receipt?.status === "POSTED"}
+        disabled={po?.status !== "CONFIRMED"}
+        onAction={receivePurchaseOrder}
+      />
     </StageFrame>
   );
 }
 
 export function OrdersPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const allocateSalesOrder = useDemoStore((state) => state.allocateSalesOrder);
   const order = getHeroOrder(scenario);
   const customer = scenario.customers.find((item) => item.id === order?.customerId);
   const line = scenario.salesOrderLines.find((item) => item.orderId === order?.id);
@@ -301,12 +329,22 @@ export function OrdersPage() {
           <p>{reservation ? "These units are held for " + order?.id + "." : "Allocation is a future guided interaction; this foundation view is read-only."}</p>
         </div>
       </Card>
+      <StageAction
+        label="Allocate order"
+        completedLabel="Order allocated"
+        helper="Reserve the two TS-600 units for ORD-1001 and carry the updated available balance forward."
+        completed={order?.status !== "NEW"}
+        disabled={scenario.goodsReceipts.find((item) => item.id === scenario.metadata.heroGoodsReceiptId)?.status !== "POSTED"}
+        onAction={allocateSalesOrder}
+      />
     </StageFrame>
   );
 }
 
 export function FulfillmentPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const startFulfillment = useDemoStore((state) => state.startFulfillment);
+  const completeFulfillment = useDemoStore((state) => state.completeFulfillment);
   const order = getHeroOrder(scenario);
   const pick = scenario.pickTasks.find((item) => item.orderId === order?.id);
   const pack = scenario.packTasks.find((item) => item.orderId === order?.id);
@@ -334,12 +372,22 @@ export function FulfillmentPage() {
         <KpiCard label="Package" value={pack?.packageId ?? "—"} detail={"Assigned to " + (order?.id ?? "the order")} />
         <KpiCard label="Order status" value={order?.status ?? "—"} detail="Moves forward with pick and pack" tone="accent" />
       </div>
+      <StageAction
+        label={pick?.status === "IN_PROGRESS" ? "Complete pick and pack" : "Start picking"}
+        completedLabel="Pick and pack complete"
+        helper={pick?.status === "NOT_STARTED" ? "Start the warehouse task from location A-03-02." : "Complete the pick and pack so the order can be dispatched."}
+        completed={pack?.status === "COMPLETE"}
+        disabled={pick?.status !== "IN_PROGRESS" && pick?.status !== "NOT_STARTED"}
+        onAction={pick?.status === "IN_PROGRESS" ? completeFulfillment : startFulfillment}
+      />
     </StageFrame>
   );
 }
 
 export function ShipmentPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const dispatchShipment = useDemoStore((state) => state.dispatchShipment);
+  const advanceShipment = useDemoStore((state) => state.advanceShipment);
   const shipment = getHeroShipment(scenario);
   const order = getHeroOrder(scenario);
   const carrier = scenario.carriers.find((item) => item.id === shipment?.carrierId);
@@ -374,6 +422,14 @@ export function ShipmentPage() {
         <div className="shipment-route"><span>{scenario.warehouses[0]?.name ?? "Origin warehouse"}</span><i /><strong>{trackingEvents.at(-1)?.locationLabel ?? "Destination pending"}</strong></div>
       </Card>
       <Surface className="foundation-note"><span className="note-mark">i</span><p>All carrier and tracking information is fictional scenario data. No external carrier service or map is connected.</p></Surface>
+      <StageAction
+        label={shipment?.status === "PLANNED" ? "Dispatch shipment" : "Advance tracking"}
+        completedLabel="Shipment delivered"
+        helper={shipment?.status === "PLANNED" ? "Dispatch SHP-1001 from the warehouse." : "Advance the simulated carrier milestone to the next delivery state."}
+        completed={shipment?.status === "DELIVERED"}
+        disabled={shipment?.status === "PLANNED" ? order?.status !== "PACKED" : false}
+        onAction={() => shipment?.status === "PLANNED" ? dispatchShipment() : advanceShipment(shipment?.status ?? "PLANNED")}
+      />
     </StageFrame>
   );
 }

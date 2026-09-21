@@ -9,6 +9,7 @@ Build a self-contained, deterministic, browser-only 5–10 minute concept demons
 ## Technology
 
 - React 19, TypeScript, Vite, React Router, Zustand, Tailwind CSS, Motion, Recharts
+- Handbook adaptation: the brief describes Python + Streamlit as its default stack; this repository keeps the same story, data, and walkthrough requirements in the requested React web app.
 - Vitest and React Testing Library
 - Node 22.12 or newer; npm
 - Canonical seed: src/data/scenario.json; deterministic generator: scripts/generate_mock_data.py
@@ -88,7 +89,7 @@ Use the CSCS logo supplied for the project and the CSCS / SCOTI indigo, blue, an
 
 ## Design principles
 
-Operational clarity, connected quantitative state, precise hierarchy, high information density without clutter, accessible controls, responsive desktop-first layout, restrained motion, and no requirement for 3D. See docs/DESIGN_SYSTEM.md.
+Operational clarity, connected quantitative state, precise hierarchy, high information density without clutter, accessible controls, a white workspace with blue undertones, responsive desktop-first layout, restrained motion, and no requirement for 3D. See docs/DESIGN_SYSTEM.md.
 
 ## Development commands
 

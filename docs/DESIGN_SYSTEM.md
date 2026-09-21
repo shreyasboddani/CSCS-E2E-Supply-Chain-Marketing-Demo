@@ -2,7 +2,7 @@
 
 ## Philosophy
 
-Create original enterprise operations software for a CSCS / SCOTI™ concept demonstration: precise, calm, modern, and information-rich. Use the supplied CSCS logo and the brand palette below to identify the demo, while keeping application screens original and distinct from the production SCOTI interface.
+Create original enterprise operations software for a CSCS / SCOTI™ concept demonstration: precise, calm, modern, and information-rich. The primary surface is white with a cool blue undertone, reflecting the supplied visual reference. Use the supplied CSCS logo and the brand palette below to identify the demo, while keeping application screens original and distinct from the production SCOTI interface.
 
 ## CSCS / SCOTI color tokens
 
@@ -13,11 +13,11 @@ Create original enterprise operations software for a CSCS / SCOTI™ concept dem
 | SCOTI blue | #3a78ff | Primary action, active journey, and focus |
 | SCOTI teal | #00b49d | Secondary accent and connected-flow signal |
 | Mint | #e0f2f1 | Pale contrast color from the CSCS logo |
-| Canvas | #0a0c1b | Main application background |
-| Surface | #101329 | Sidebars and primary panels |
-| Elevated | #171b37 | Inputs, cards, selected navigation |
-| Primary text | #f5f6ff | Headings and key values |
-| Muted text | #9ba2bf | Supporting labels |
+| Canvas | #f4f7fc | Main application background |
+| Surface | #ffffff | Sidebars and primary panels |
+| Elevated | #eef3ff | Inputs, cards, selected navigation |
+| Primary text | #101a3d | Headings and key values |
+| Muted text | #687697 | Supporting labels |
 | Accent | #3a78ff | Key focus and active journey state |
 | Positive | #2dc6aa | Success status |
 | Warning | #deb85e | Pending status |

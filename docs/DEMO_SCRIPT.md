@@ -13,4 +13,4 @@ The target walkthrough is about seven minutes. Every displayed date is part of t
 | 4:50–6:00 | Shipment | “SHP-1001 carries the promise through dispatch, transit, and delivery. Dispatch leaves 138 on hand and releases the two-unit reservation.” |
 | 6:00–7:00 | Control Tower | “The activity timeline makes the full chain visible as one story, from the demand decision to delivery.” |
 
-The current foundation presents these stages as shared-state skeletons. State-changing actions can be added after mentor review and use only the domain transition layer.
+The presenter uses the guided action on each stage to advance the shared scenario: approve the requirement, confirm the PO, post the receipt, allocate the order, start and complete fulfillment, dispatch, and advance the simulated tracking milestones. Every action is local, deterministic, and reversible with Reset demo.

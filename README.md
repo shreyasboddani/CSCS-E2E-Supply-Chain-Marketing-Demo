@@ -43,6 +43,7 @@ Three.js / React Three Fiber is an optional future extension. The initial experi
 | Path | Purpose |
 | --- | --- |
 | docs/PROJECT_CONTRACT.md | Locked product, scenario, business rules, and definition of done |
+| docs/HANDBOOK_ALIGNMENT.md | Handbook requirements mapped to the React implementation |
 | docs/DATA_MODEL.md | Entities, relationships, status values, invariants, and event model |
 | docs/DESIGN_SYSTEM.md | CSCS / SCOTI brand palette, reusable patterns, motion, and accessibility |
 | docs/DEMO_SCRIPT.md | Planned seven-minute presentation narrative |
@@ -94,9 +95,9 @@ The app keeps interactive scenario progress in browser sessionStorage so a refre
 
 ## Guided journey and Explore mode
 
-The default mode is Guided. The eight-stage navigation presents the intended order, the Continue links advance one stage, and the connected-thread indicator reflects scenario state. Explore is available from the top bar for free navigation. Both modes use the same data and selectors.
+The default mode is Guided. The eight-stage navigation presents the intended order, the Continue links advance one stage, and each stage includes a guided action that advances the shared lifecycle state. The connected-thread indicator and downstream KPIs update after every action. Explore is available from the top bar for free navigation. Both modes use the same data and selectors.
 
-All stage routes currently provide read-only foundation screens. Domain transitions and store actions are ready for later interaction wiring; stage screens do not create independent business data.
+The stage routes are intentionally walkable: approve the demand requirement, confirm the PO, post the receipt, allocate the order, complete fulfillment, dispatch the shipment, and advance tracking. Every action calls a deterministic guarded transition; stage screens do not create independent business data.
 
 ## Adding a stage or component safely
 
@@ -122,7 +123,7 @@ This is a static Vite application and can be hosted by a static-site service aft
 
 ## Mentor review
 
-Decision 001 is pending mentor confirmation because the handbook recommends Python / Streamlit while the task brief specifies React / TypeScript / Vite. Mentor review is also needed for approved branding and assets, external presentation of the fictional scenario, and public hosting. See docs/DECISIONS.md and docs/SCOTI_RESEARCH.md.
+The handbook's product and story requirements are mapped in docs/HANDBOOK_ALIGNMENT.md. Its Streamlit recommendation is adapted to the requested React web app. Mentor review is still needed for external presentation of the fictional scenario and public hosting. See docs/DECISIONS.md and docs/SCOTI_RESEARCH.md.
 
 ## Contributing
 

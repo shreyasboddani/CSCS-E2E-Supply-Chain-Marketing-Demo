@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { appRoutes } from "../app/router";
@@ -39,5 +39,15 @@ describe("guided demo shell", () => {
     const requirementCard = screen.getByText("Requirement", { exact: true }).closest(".kpi-card");
     expect(requirementCard).toHaveTextContent("100");
     expect(screen.getByRole("row", { name: /TS-600/ })).toHaveTextContent("Everyday 600");
+  });
+
+  it("walks the first guided action into the shared scenario state", () => {
+    const router = createMemoryRouter(appRoutes, { initialEntries: ["/demand"] });
+    render(<RouterProvider router={router} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Approve replenishment" }));
+
+    expect(useDemoStore.getState().scenario.metadata.replenishmentApproved).toBe(true);
+    expect(screen.getByRole("button", { name: "Completed" })).toBeDisabled();
   });
 });
