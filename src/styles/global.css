@@ -208,10 +208,10 @@ td.table-numeric { color: #d6e0e2; font: 11px var(--font-mono); }
 .demand-bar-label { display: grid; gap: 3px; }
 .demand-bar-label strong { color: #ccd9da; font: 9px var(--font-mono); }
 .demand-bar-label span { color: #75878d; font-size: 8px; }
-.demand-bar-track { height: 7px; display: flex; align-items: center; gap: 2px; position: relative; border-radius: 5px; background: linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 25% 100%; }
-.demand-bar { height: 6px; display: block; border-radius: 4px; }
-.demand-bar--forecast { background: #82979d; opacity: .88; }
-.demand-bar--inventory { margin-left: -100%; align-self: end; margin-bottom: -9px; height: 3px; background: var(--accent); }
+.demand-bar-track { height: 12px; position: relative; overflow: hidden; border-radius: 5px; background: linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 25% 100%; }
+.demand-bar { position: absolute; left: 0; display: block; border-radius: 4px; }
+.demand-bar--forecast { top: 0; height: 6px; background: #82979d; opacity: .88; }
+.demand-bar--inventory { bottom: 0; height: 3px; background: var(--accent); }
 .demand-bar-value { color: #96a8ad; text-align: right; font: 9px var(--font-mono); }
 .demand-chart-note { display: flex; align-items: center; gap: 8px; padding: 9px 10px; background: rgba(58,120,255,.05); border: 1px solid rgba(58,120,255,.1); border-radius: 6px; color: #a6c9c6; font-size: 9px; margin-top: 3px; }
 .demand-chart-note .signal-dot { width: 5px; height: 5px; }
