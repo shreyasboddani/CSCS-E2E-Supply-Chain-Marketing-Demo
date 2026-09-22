@@ -33,6 +33,22 @@ export function getPresentation(scenario: DemoScenario) {
   const location = scenario.locations.find(
     (item) => item.id === receiptLine.locationId,
   )!;
+  const supplier = scenario.suppliers.find((item) => item.id === po.supplierId)!;
+  const customer = scenario.customers.find(
+    (item) => item.id === order.customerId,
+  )!;
+  const carrier = scenario.carriers.find(
+    (item) => item.id === shipment.carrierId,
+  )!;
+  const pickTask = scenario.pickTasks.find(
+    (task) => task.orderId === order.id,
+  )!;
+  const packTask = scenario.packTasks.find(
+    (task) => task.orderId === order.id,
+  )!;
+  const orderQty = scenario.salesOrderLines
+    .filter((line) => line.orderId === order.id)
+    .reduce((total, line) => total + line.quantity, 0);
   const steps: {
     action: DemoAction;
     label: string;
@@ -72,14 +88,14 @@ export function getPresentation(scenario: DemoScenario) {
       action: "startFulfillment",
       label: "Start picking",
       description: "Begin the warehouse task for the customer order.",
-      done: scenario.pickTasks[0]?.status !== "NOT_STARTED",
+      done: pickTask.status !== "NOT_STARTED",
       module: "fulfillment",
     },
     {
       action: "completeFulfillment",
       label: "Complete pick & pack",
       description: "Pack the picked units into the linked shipment package.",
-      done: scenario.packTasks[0]?.status === "COMPLETE",
+      done: packTask.status === "COMPLETE",
       module: "fulfillment",
     },
     {
@@ -122,10 +138,26 @@ export function getPresentation(scenario: DemoScenario) {
     receipt,
     shipment,
     location,
+    supplier,
+    customer,
+    carrier,
+    pickTask,
+    packTask,
+    orderQty,
     available: getAvailableInventory(inventory),
     requirement: calculateReplenishmentRequirement(forecast, inventory),
     incoming: receiptLine.quantity,
+    approved: scenario.metadata.replenishmentApproved,
+    confirmed: po.status !== "DRAFT",
     received: receipt.status === "POSTED",
+    allocated: order.status !== "NEW",
+    picking: pickTask.status !== "NOT_STARTED",
+    packed: packTask.status === "COMPLETE",
+    dispatched: shipment.status !== "PLANNED",
+    delivered: shipment.status === "DELIVERED",
+    /** Supplier-to-dock position of the inbound commitment, 0 to 1. */
+    inboundProgress:
+      po.status === "RECEIVED" ? 1 : po.status === "CONFIRMED" ? 0.58 : 0.03,
     shipmentProgress:
       [
         "PLANNED",
@@ -139,3 +171,5 @@ export function getPresentation(scenario: DemoScenario) {
     total: steps.length,
   };
 }
+
+export type Presentation = ReturnType<typeof getPresentation>;
