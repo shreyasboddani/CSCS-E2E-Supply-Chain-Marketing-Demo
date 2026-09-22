@@ -9,6 +9,7 @@ import { DemoDisclosure } from "../components/ui/DemoDisclosure";
 import { Button, Modal } from "../components/ui/primitives";
 import { formatScenarioDate } from "../utils/dates";
 import { RouteViewport } from './RouteViewport';
+import { SpotlightTour } from "../components/narrative/SpotlightTour";
 
 export function DemoShell() {
   const scenario = useDemoStore((state) => state.scenario);
@@ -32,7 +33,7 @@ export function DemoShell() {
   };
 
   return (
-    <div className="app-shell">
+    <div className={"app-shell app-shell--" + mode}>
       <RouteViewport />
       <header className="topbar">
         <Link to="/" className="brand-lockup" aria-label="CSCS SCOTI concept story home">
@@ -84,6 +85,7 @@ export function DemoShell() {
         </div>
       </div>
 
+      {mode === "guided" && !resetOpen && <SpotlightTour key={activeStage} stageId={activeStage} prefix={sandboxPrefix} />}
       <Modal
         open={resetOpen}
         title="Reset this demo?"

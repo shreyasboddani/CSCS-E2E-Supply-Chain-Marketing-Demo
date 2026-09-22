@@ -31,3 +31,12 @@ The spatial redesign adds an original Three.js warehouse and transport illustrat
 The handbook PDF was reviewed directly on 2026-09-21. Its product requirements remain governing: a newcomer can follow one fictional supply-chain lifecycle in 5-10 minutes; every stage reads connected persistent mock data; the narrative explains what happens and why it matters; and the result is self-contained, clickable, testable, and shareable.
 
 The user requested React, so the handbook's Streamlit framework setup is adapted to React 19, TypeScript, Vite, React Router, Zustand, and canonical JSON. The data-generation discipline, Git workflow, verification expectations, staged journey, original-concept constraint, and optional AI-layer boundary are retained. The new story-to-sandbox journey is documented in `docs/FINAL_DEMO_FLOW.md`.
+
+
+## Spotlight walkthrough (2026-09-22)
+
+Re-read the full handbook. Phase 4 is implemented as a spotlight guide over the
+original operational screens. It explains what to inspect, why the handoff matters,
+and what the existing action changes. The user retains the original interface.
+A collapsible 3D handoff illustration supports the explanation. No second business
+scenario, paid dependency, AI service, or copied production screen was added.

@@ -34,3 +34,14 @@ The unnamed retail operation, all people and organizations, product/order/PO/rec
 - Should all AI/agentic references remain outside v1 UI copy?
 - Is the repository or any hosted demo allowed to be public?
 - Is there an approved public product source that should replace the research links above?
+
+
+## Research refresh: 2026-09-22
+
+Rechecked https://cscs.io/ai-supply-chain-platform/ and
+https://cscs.io/the-scoti-platform-intelligence-autonomy-end-to-end-supply-chain-control/ .
+These support the planning, task-driven warehouse execution, transportation, and
+shared visibility themes used by the spotlight guide. They do not establish the
+exact production interface. White/blue styling follows the user-provided reference;
+the handbook requires an original interface. The /warehouse-management/ URL
+redirects to an old page and should not be treated as current UI evidence.

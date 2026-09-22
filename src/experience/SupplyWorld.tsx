@@ -9,11 +9,15 @@ export function SupplyWorld({
   interactive = true,
   roofOpen = false,
   progress,
+  chapter,
+  operationsFocus,
 }: {
   view?: SceneState["view"];
   interactive?: boolean;
   roofOpen?: boolean;
   progress?: number;
+  chapter?: number;
+  operationsFocus?: number;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const controller = useRef<ReturnType<
@@ -31,6 +35,8 @@ export function SupplyWorld({
     received: p.received,
     shipmentProgress: p.shipmentProgress,
     motion: !reduced,
+    operationsFocus,
+    operationsCompleted: p.completed,
   });
   useEffect(() => {
     current.current = {
@@ -40,9 +46,12 @@ export function SupplyWorld({
       shipmentProgress: p.shipmentProgress,
       motion: !reduced,
       progress,
+      chapter,
+      operationsFocus,
+      operationsCompleted: p.completed,
     };
     controller.current?.update(current.current);
-  }, [view, roofOpen, p.received, p.shipmentProgress, reduced, progress]);
+  }, [view, roofOpen, p.received, p.shipmentProgress, p.completed, reduced, progress, chapter, operationsFocus]);
 
   useEffect(() => {
     const node = host.current;
@@ -93,12 +102,12 @@ export function SupplyWorld({
   return (
     <div className={"supply-world supply-world--" + renderState}>
       <div className="world-ground" />
-      {renderState !== "ready" && <WorldFallback />}
+      {renderState !== "ready" && (operationsFocus !== undefined ? <OperationsFallback focus={operationsFocus} /> : <WorldFallback />)}
       <div className="world-canvas" ref={host} aria-hidden="true" />
       <div className="world-caption">
         <span className="world-signal" />
         <span>
-          {view === "warehouse"
+          {operationsFocus !== undefined ? "DISTRIBUTION FLOOR / ILLUSTRATIVE" : view === "warehouse"
             ? "WAREHOUSE / A-03-02"
             : view === "transport"
               ? "TRANSPORT / SHP-1001"
@@ -130,6 +139,20 @@ export function SupplyWorld({
       </span>
     </div>
   );
+}
+
+function OperationsFallback({ focus }: { focus: number }) {
+  return <svg className="world-fallback" viewBox="0 0 900 580" role="img" aria-label="Distribution floor: receiving, storage, packing, and dispatch">
+    <path d="M70 305 485 100 835 300 420 515Z" fill="#d7e5f1" />
+    <path d="M70 305v20l350 210v-20Zm350 210v20l415-215v-20Z" fill="#b8ccdf" />
+    {[0, 1, 2, 3].map(i => <g key={i} transform={`translate(${175 + i * 142},${290 - i * 20})`}>
+      <path d="M0 0 72-38 150 5 76 45Z" fill={focus === i ? "#00a995" : "#c2d5e8"} />
+      <path d="M25-10v-65l47-24 54 29v65L79 22Z" fill="#eaf2fa" stroke="#6084ab" strokeWidth="2" />
+      <path d="M25-75 72-99 126-70 79-45Z" fill="#fff" />
+      <path d="M79-45v67M25-40 79-10 126-35" fill="none" stroke="#3a78ff" strokeWidth="5" />
+      <text x="70" y="86" textAnchor="middle" fill="#284a70" fontSize="16">{["Receive", "Store", "Pack", "Dispatch"][i]}</text>
+    </g>)}
+  </svg>;
 }
 
 function WorldFallback() {
