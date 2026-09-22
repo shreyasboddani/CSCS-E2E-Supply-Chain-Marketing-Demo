@@ -19,3 +19,14 @@ Target: a 5-10 minute walkthrough. All operational data is fictional and the int
 ## Recording and review
 
 Use a clean browser session or reset before recording. Keep the concept/simulated-data disclosure in the experience. Complete a browser visual pass before external release: hero, roof reveal, all actions, workspace handoff, reset, keyboard controls, narrow screens, and reduced motion. This release's browser review is pending until the Browser plugin has a connected browser; no screenshot-based approval has been claimed.
+
+
+## Guided spotlight over the original workspace
+
+Select Guided to open the tour on the current stage. Use Show me what to review,
+then Show me the action. Click the original highlighted action button. The guide
+explains the latest recorded event and provides the next handoff. For pick/pack
+and shipment, Explain the next action continues within the current stage.
+See this connection in 3D expands an optional illustration. Escape closes the
+guide; Explore keeps the same scenario and original controls. Reset demo keeps
+its confirmation dialog. All seven business stages and the intro remain intact.

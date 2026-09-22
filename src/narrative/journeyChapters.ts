@@ -14,7 +14,8 @@ export interface JourneyChapter {
     | "inventory"
     | "order"
     | "pickpack"
-    | "delivery";
+    | "delivery"
+    | "control";
   stage: StageId;
   label: string;
   eyebrow: string;
@@ -28,7 +29,7 @@ export interface JourneyChapter {
 }
 
 /**
- * The eight scroll chapters that carry Demand → PO → Receipt → Inventory →
+ * The ten scroll chapters that carry Demand → PO → Receipt → Inventory →
  * Order → Fulfillment → Shipment → Delivery. Every figure comes from the
  * shared scenario, so scrolling narrates state without ever changing it.
  */
@@ -78,9 +79,9 @@ export function buildJourneyChapters(
       label: "Inbound transit",
       eyebrow: "03 / INBOUND · IN MOTION",
       title: "The commitment travels.",
-      body: `${p.incoming} units leave ${p.supplier.name} for the receiving dock. Nothing in the plan has to be re-entered: the inbound load already knows which requirement it answers.`,
+      body: `${p.incoming} units leave ${p.supplier.name} for the receiving dock. This illustrative transport leg connects the supplier commitment to its expected receipt; carrier tracking for inbound loads is not simulated.`,
       metrics: [
-        { label: "In transit", value: String(p.incoming), note: "units inbound" },
+        { label: "Expected load", value: String(p.incoming), note: "units inbound" },
         { label: "Destination", value: scenario.warehouses[0].name },
         { label: "Due", value: formatCompactDate(p.po.expectedAt) },
       ],
@@ -152,12 +153,12 @@ export function buildJourneyChapters(
       done: p.packed,
     },
     {
-      id: "delivery",
+      id: "dispatch",
       focus: "delivery",
       stage: "shipment",
-      label: "Dispatch & delivery",
-      eyebrow: `08 / DELIVERY · ${formatCompactDate(timeline.shipmentDeliveredAt)}`,
-      title: "The thread reaches the door.",
+      label: "Dispatch",
+      eyebrow: `08 / DISPATCH · ${formatCompactDate(timeline.shipmentDispatchedAt)}`,
+      title: "The promise leaves the dock.",
       body: `${p.shipment.id} leaves the dock with ${p.carrier.name}. Dispatch releases the reservation and reduces on hand once, and every carrier milestone stays joined to ${p.order.id} and the forecast that started it.`,
       metrics: [
         { label: "Shipment", value: status },
@@ -165,7 +166,23 @@ export function buildJourneyChapters(
         { label: "Customer", value: p.customer.name },
       ],
       entities: [p.shipment.id, p.order.id],
-      done: p.delivered,
+      done: p.dispatched,
+    },
+    {
+      id: "delivery", focus: "delivery", stage: "shipment", label: "Delivery",
+      eyebrow: `09 / DELIVERY · ${formatCompactDate(timeline.shipmentDeliveredAt)}`,
+      title: "The thread reaches the door.",
+      body: `${p.shipment.id} connects transit, out-for-delivery, and delivery to ${p.order.id}. In the demo, confirming delivery completes the shipment and the customer order together.`,
+      metrics: [{ label: "Current shipment", value: status }, { label: "Customer", value: p.customer.name }, { label: "Package", value: p.packTask.packageId }],
+      entities: [p.shipment.id, p.order.id], done: p.delivered,
+    },
+    {
+      id: "control", focus: "control", stage: "control-tower", label: "Control Tower",
+      eyebrow: "10 / VISIBILITY · THE WHOLE CHAIN",
+      title: "Every handoff. One connected view.",
+      body: `Follow ${p.forecast.sku} from its demand signal to ${p.shipment.id}. The Control Tower reads the same activity events, inventory, and order state as the teams executing the work. This is the connected operating-layer concept the demo illustrates.`,
+      metrics: [{ label: "Decisions complete", value: `${p.completed} / ${p.total}` }, { label: "Available now", value: String(p.available) }, { label: "Recorded events", value: String(scenario.activityEvents.length) }],
+      entities: [p.po.id, p.receipt.id, p.order.id, p.shipment.id], done: p.delivered,
     },
   ];
 }

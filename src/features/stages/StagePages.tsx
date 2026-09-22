@@ -119,7 +119,7 @@ export function IntroPage() {
           <h2>One supply chain story, from <em>plan to delivery.</em></h2>
           <p>Follow one simulated product through a Back-to-School demand signal, replenishment, warehouse execution, fulfillment, and delivery visibility.</p>
           <div className="intro-actions">
-            <Link className="button button--primary" to={sandboxPrefix + "/demand"}>Begin guided journey <span aria-hidden="true">→</span></Link>
+            <Link className="button button--primary" onClick={() => useDemoStore.getState().setMode("guided")} to={sandboxPrefix + "/demand"}>Begin guided journey <span aria-hidden="true">→</span></Link>
             <span className="duration-note">ABOUT 7 MINUTES <span aria-hidden="true">·</span> 8 STAGES</span>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { ConnectedJourney } from "./ConnectedJourney";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDemoStore } from "../store/demoStore";
@@ -318,6 +319,7 @@ export function StoryExperience() {
             </div>
           </div>
         </section>
+        <ConnectedJourney />
         <WarehouseJourney />
         <section className="handoff-section launch-section">
           <div className="section-heading">

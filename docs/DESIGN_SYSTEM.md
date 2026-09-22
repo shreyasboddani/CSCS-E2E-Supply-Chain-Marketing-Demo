@@ -65,3 +65,42 @@ Use semantic HTML, logical headings, keyboard-operable navigation, visible focus
 ## Anti-patterns
 
 Explicitly avoid giant purple/blue gradient blobs; excessive glassmorphism; sparkles everywhere; fake AI chat panels; giant rounded cards everywhere; random chart colors; meaningless decorative KPIs; excessive floating 3D; “Live” wording for simulated data; and too many competing primary actions.
+
+
+## Complete scroll journey
+
+ConnectedJourney extends the existing page with ten chapters: demand, sourcing,
+illustrative inbound transit, receiving, inventory, orders, pick/pack, dispatch,
+delivery, and Control Tower. Existing sections remain available.
+
+One sticky canvas moves between supplier, receiving dock, stock, packing bench,
+road, and customer. Transport shots follow vehicles before the final overview.
+Supplier pallets, crosswalks, signs, and residential details add physical context.
+The moving parcel and vehicles illustrate the narrative, not live tracking.
+Scrolling never executes business transitions. Metrics show current shared state.
+All chapter text and links work without WebGL. Reduced motion uses static camera
+views and compact text; mobile uses a smaller sticky scene. No new dependencies.
+
+
+### Physical handoff choreography
+
+Vehicles use separate receiving and outbound positions, stay on exterior routes,
+and stop outside the destination. One smoothed scroll clock drives vehicles,
+camera follow, and parcel ownership, including reverse scrolling. The parcel
+stays at a cargo socket during transport. A worker with articulated arms and legs
+carries it through the receiving aisle, staging, packing, loading, and delivery.
+Loading completes before departure; unloading begins after arrival. Short reach
+and set-down intervals connect stationary cargo, hands, bench, and doorstep.
+The truck has an illustrative open side to keep the carried parcel visible.
+
+
+## Spotlight tour over the operational demo
+
+The existing workspace, stage cards, tables, narrative rail, and action buttons stay
+in place. Guided mode adds a nonmodal spotlight: context, records to inspect, then
+the existing action. Completing that action explains the recorded event and offers
+the next stage. Escape or Close switches to Explore without resetting state.
+The optional 3D inset uses a separate distribution-floor set with receiving rollers,
+stock racks, packing bench, dispatch staging, and a worker pushing a parcel cart.
+Its lane is illustrative; all status text and previews read the canonical scenario.
+The tour has mobile positioning, reduced-motion compatibility, and an SVG fallback.
