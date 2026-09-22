@@ -56,6 +56,8 @@ Carry a single restrained line through Demand → PO → Receipt → Inventory �
 
 The experience and data must work when 3D is absent or fails to load. Future Three.js / React Three Fiber scenes belong behind lazy-loaded optional components with SVG/CSS fallbacks. Do not use WebGL for ordinary controls, tables, KPIs, charts, forms, navigation, or tooltips.
 
+The current marketing experience implements that enhancement in `src/experience/three`: an original architectural warehouse, roads, stock racks, and delivery vehicle. Three.js is imported near visible scenes; a static SVG remains available without WebGL. `launch.css` owns the larger marketing typography and compositions; `workspace.css` applies the related operational hierarchy. White and pale blue remain dominant, with one navy interactive demonstration section.
+
 ## Accessibility
 
 Use semantic HTML, logical headings, keyboard-operable navigation, visible focus, sufficient contrast, descriptive button names, reduced-motion support, and non-color status cues. Provide textual equivalents for future charts and immersive scenes.

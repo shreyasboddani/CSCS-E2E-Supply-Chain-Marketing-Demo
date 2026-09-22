@@ -26,7 +26,7 @@ describe("guided demo shell", () => {
     const router = createMemoryRouter(appRoutes, { initialEntries: ["/"] });
     render(<RouterProvider router={router} />);
 
-    fireEvent.click(screen.getByRole("button", { name: /Explore demo/i }));
+    fireEvent.click(screen.getByRole("link", { name: /Explore demo/i }));
 
     expect(screen.getByRole("navigation", { name: "Demo stages" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /One supply chain story/i })).toBeInTheDocument();

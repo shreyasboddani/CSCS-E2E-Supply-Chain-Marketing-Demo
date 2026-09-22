@@ -9,6 +9,10 @@ import type {
 export const getAvailableInventory = (balance: InventoryBalance): number =>
   balance.onHand - balance.reserved;
 
+/** One comparable scale for every SKU, including inventory after receipt. */
+export const getDemandChartMaximum = (scenario: DemoScenario): number =>
+  Math.max(1, ...scenario.forecasts.map(item => item.forecastQty), ...scenario.inventory.map(getAvailableInventory));
+
 export const calculateReplenishmentRequirement = (
   forecast: DemandForecast,
   balance: InventoryBalance,

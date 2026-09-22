@@ -8,6 +8,7 @@ import { JourneyProgress } from "../components/ui/JourneyProgress";
 import { DemoDisclosure } from "../components/ui/DemoDisclosure";
 import { Button, Modal } from "../components/ui/primitives";
 import { formatScenarioDate } from "../utils/dates";
+import { RouteViewport } from './RouteViewport';
 
 export function DemoShell() {
   const scenario = useDemoStore((state) => state.scenario);
@@ -32,6 +33,7 @@ export function DemoShell() {
 
   return (
     <div className="app-shell">
+      <RouteViewport />
       <header className="topbar">
         <Link to="/" className="brand-lockup" aria-label="CSCS SCOTI concept story home">
           <img className="cscs-logo" src="/brand/cscs-logo.svg" alt="CSCS" />

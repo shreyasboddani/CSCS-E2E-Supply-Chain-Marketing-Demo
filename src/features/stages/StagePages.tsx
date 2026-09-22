@@ -14,12 +14,16 @@ import {
   getHeroOrder,
   getHeroPurchaseOrder,
   getHeroShipment,
+  getDemandChartMaximum,
 } from "../../domain/selectors";
 import { NarrativeRail } from "../../components/narrative/NarrativeRail";
 import { Timeline } from "../../components/narrative/Timeline";
 import { ConnectedThread } from "../../components/ui/ConnectedThread";
 import { StageHeader } from "../../components/ui/StageHeader";
 import { StageAction } from "../../components/ui/StageAction";
+import { SupplyWorld } from "../../experience/SupplyWorld";
+import { JourneyConsole } from "../../experience/JourneyConsole";
+import "../../experience/workspace.css";
 import { formatCompactDate, formatScenarioDate } from "../../utils/dates";
 import {
   Card,
@@ -43,7 +47,7 @@ function StageFrame({ stageId, children }: { stageId: StageId; children: ReactNo
   const stageIndex = stageDefinitions.findIndex((stage) => stage.id === stageId);
   const nextStage = stageDefinitions[stageIndex + 1];
   return (
-    <div className="stage-layout">
+    <div className={'stage-layout stage-layout--' + stageId}>
       <main className="stage-main">
         <StageHeader stageId={stageId} />
         <ConnectedThread scenario={scenario} />
@@ -102,11 +106,6 @@ export function IntroPage() {
   const forecast = getHeroForecast(scenario);
   const inventory = getHeroInventory(scenario);
   const product = scenario.products.find((item) => item.sku === scenario.metadata.heroSku);
-  const supplier = scenario.suppliers[0];
-  const warehouse = scenario.warehouses[0];
-  const customer = scenario.customers[0];
-  const poLine = scenario.purchaseOrderLines.find((item) => item.poId === scenario.metadata.heroPurchaseOrderId);
-  const orderLine = scenario.salesOrderLines.find((item) => item.orderId === scenario.metadata.heroOrderId);
   const requirement = forecast && inventory ? calculateReplenishmentRequirement(forecast, inventory) : 0;
   const available = inventory ? getAvailableInventory(inventory) : 0;
   const onHand = inventory?.onHand ?? 0;
@@ -124,23 +123,16 @@ export function IntroPage() {
             <span className="duration-note">ABOUT 7 MINUTES <span aria-hidden="true">·</span> 8 STAGES</span>
           </div>
         </div>
-        <div className="network-visual" aria-label="Supplier to customer supply chain">
-          <div className="network-halo" />
-          <div className="network-track">
-            <div className="network-node"><span className="network-node-icon">01</span><span>SUPPLIER</span><strong>{supplier?.name ?? "—"}</strong></div>
-            <div className="network-link"><span>{poLine?.quantity ?? 0} units</span><i /></div>
-            <div className="network-node network-node--focus"><span className="network-node-icon">02</span><span>WAREHOUSE</span><strong>{warehouse?.name ?? "—"}</strong></div>
-            <div className="network-link"><span>{orderLine?.quantity ?? 0} units</span><i /></div>
-            <div className="network-node"><span className="network-node-icon">03</span><span>CUSTOMER</span><strong>{customer?.name ?? "—"}</strong></div>
-          </div>
-          <div className="network-caption"><span className="signal-dot" /> One scenario thread <span className="caption-separator">/</span> {scenario.metadata.heroSku}</div>
-        </div>
+        <div className="workspace-world"><SupplyWorld /></div>
       </section>
       <section className="intro-metrics" aria-label="Scenario overview">
         <KpiCard label="Promotion forecast" value={forecast?.forecastQty ?? 0} unit="units" detail={(product?.name ?? "Product") + " · " + scenario.metadata.heroSku} />
         <KpiCard label="Available now" value={available} unit="units" detail={onHand + " on hand · " + reserved + " reserved"} />
         <KpiCard label="Replenishment gap" value={requirement} unit="units" detail="Target ending stock: 20" tone="accent" />
       </section>
+      <div className="workspace-module-links">
+        {stageDefinitions.filter(stage => ['demand', 'inbound', 'shipment', 'control-tower'].includes(stage.id)).map((stage, index) => <Link key={stage.id} to={sandboxPrefix + stage.path}><span>0{index + 1}</span><strong>{stage.label}</strong><p>{stage.purpose}</p><b>↗</b></Link>)}
+      </div>
       <Card className="intro-journey-card">
         <div>
           <span className="eyebrow">THE CONNECTED JOURNEY</span>
@@ -156,6 +148,7 @@ export function IntroPage() {
 
 export function DemandPage() {
   const scenario = useDemoStore((state) => state.scenario);
+  const maximum = getDemandChartMaximum(scenario);
   const approveReplenishment = useDemoStore((state) => state.approveReplenishment);
   const forecast = getHeroForecast(scenario);
   const balance = getHeroInventory(scenario);
@@ -172,12 +165,11 @@ export function DemandPage() {
       <ChartCard title="Demand and inventory position" description="A shared scenario view across the active product set.">
         <div className="demand-chart">
           <div className="demand-chart-legend"><span><i className="legend-forecast" /> Forecast demand</span><span><i className="legend-inventory" /> Available now</span></div>
-          <div className="demand-chart-axis"><span>0</span><span>60</span><span>120 units</span></div>
+          <div className="demand-chart-axis"><span>0</span><span>{maximum / 2}</span><span>{maximum} units</span></div>
           {scenario.products.map((product) => {
             const productForecast = scenario.forecasts.find((item) => item.sku === product.sku);
             const productInventory = scenario.inventory.find((item) => item.sku === product.sku);
             if (!productForecast || !productInventory) return null;
-            const maximum = Math.max(productForecast.forecastQty, getAvailableInventory(productInventory), 1);
             return (
               <div className="demand-bar-row" key={product.sku}>
                 <div className="demand-bar-label"><strong>{product.sku}</strong><span>{product.name}</span></div>
@@ -274,6 +266,7 @@ export function InboundPage() {
       </div>
       <Card className="warehouse-card">
         <div className="warehouse-card-top"><div><span className="eyebrow">RECEIVING OVERVIEW</span><h2>{scenario.warehouses[0]?.name ?? "Warehouse"}</h2></div><OperationalId>{location?.code ?? "—"}</OperationalId></div>
+        <div className="workspace-warehouse-model"><SupplyWorld view="warehouse" roofOpen /></div>
         <div className="warehouse-plan">
           <div className="dock-zone"><span className="zone-label">INBOUND DOCK</span><div className="dock-line"><span className="dock-box">+{line?.quantity ?? 0}</span><span className="dock-track" /></div><p>Receipt {receipt?.status?.toLowerCase() ?? "expected"}</p></div>
           <div className="rack-zone"><span className="zone-label">PUT-AWAY LOCATION</span><div className="rack-visual"><div className="rack-slot rack-slot--active">{location?.code ?? "—"}<strong>{line?.sku ?? "—"}</strong></div></div><p>{line?.quantity ?? 0} units designated for put-away</p></div>
@@ -449,6 +442,7 @@ export function ControlTowerPage() {
   return (
     <StageFrame stageId="control-tower">
       <div className="object-heading"><div><span className="eyebrow">CONNECTED OPERATIONAL STORY</span><h2>One thread. Every handoff.</h2></div><span className="table-note">Scenario date · {formatScenarioDate(getCurrentScenarioDate(scenario))}</span></div>
+      <div className="workspace-tower-experience"><div className="workspace-tower-world"><SupplyWorld /></div><JourneyConsole compact /></div>
       <div className="tower-status-grid">
         <div><span>{po?.id ?? "—"}</span><StatusBadge status={po?.status ?? "DRAFT"} /></div>
         <div><span>{receipt?.id ?? "—"}</span><StatusBadge status={receipt?.status ?? "EXPECTED"} /></div>

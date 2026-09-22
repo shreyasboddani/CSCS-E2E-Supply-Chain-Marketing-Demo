@@ -1,3 +1,3 @@
 # Optional 3D scenes
 
-This folder is an extension point for future, lazy-loaded React Three Fiber scenes. The core experience must remain complete and usable without WebGL. Prefer SVG/CSS fallbacks and keep ordinary UI, charts, controls, tables, and navigation out of 3D.
+The current lazy-loaded Three.js model lives in `src/experience/three/createSupplyScene.ts`, with its lifecycle and SVG fallback in `src/experience/SupplyWorld.tsx`. It is shared by the marketing story, workspace overview, warehouse, and Control Tower. The core experience remains complete without WebGL; ordinary controls, tables, charts, and navigation stay in the DOM.
