@@ -26,6 +26,10 @@ The app uses the CSCS logo supplied for this project and a SCOTI™ wordmark loc
 
 The app is a React 19 + TypeScript + Vite SPA. React Router keeps all eight stages inside one shell. Zustand holds a session-scoped scenario snapshot. Pure selectors, transitions, and invariant checks live in src/domain. Every route reads the same deterministic JSON seed; no backend or external API is required at runtime.
 
+## Final experience
+
+`/` is the cinematic CSCS / SCOTI concept story. It uses scroll-linked SVG/CSS spatial scenes to trace a single connected thread through planning, warehouse execution, movement, and orchestration, then opens the real interactive sandbox at `/demo/intro`. The sandbox retains the eight original stage routes for direct presentation and testing. See [experience direction](docs/EXPERIENCE_DIRECTION.md) and [final demo flow](docs/FINAL_DEMO_FLOW.md).
+
 Three.js / React Three Fiber is an optional future extension. The initial experience does not depend on WebGL.
 
 ## Stack
