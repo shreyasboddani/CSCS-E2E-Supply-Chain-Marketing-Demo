@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { stageDefinitions } from "../../narrative/stageCopy";
 import type { StageId } from "../../domain/types";
 
-export function JourneyProgress({ completedStages }: { completedStages: StageId[] }) {
+export function JourneyProgress({ completedStages, pathPrefix = "" }: { completedStages: StageId[]; pathPrefix?: string }) {
   return (
     <nav className="journey-nav" aria-label="Demo stages">
       <div className="journey-nav-heading">
@@ -13,7 +13,7 @@ export function JourneyProgress({ completedStages }: { completedStages: StageId[
         {stageDefinitions.map((stage, index) => (
           <li key={stage.id} className={completedStages.includes(stage.id) ? "journey-item journey-item--complete" : "journey-item"}>
             <NavLink
-              to={stage.path}
+              to={pathPrefix + stage.path}
               end
               className={({ isActive }) => isActive ? "journey-link journey-link--active" : "journey-link"}
               aria-label={(index + 1) + ". " + stage.label}

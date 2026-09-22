@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { ReactNode } from "react";
 import { stageDefinitions } from "../../narrative/stageCopy";
 import type { StageId } from "../../domain/types";
@@ -38,6 +38,8 @@ import {
 
 function StageFrame({ stageId, children }: { stageId: StageId; children: ReactNode }) {
   const scenario = useDemoStore((state) => state.scenario);
+  const location = useLocation();
+  const sandboxPrefix = location.pathname.startsWith("/demo") ? "/demo" : "";
   const stageIndex = stageDefinitions.findIndex((stage) => stage.id === stageId);
   const nextStage = stageDefinitions[stageIndex + 1];
   return (
@@ -49,11 +51,11 @@ function StageFrame({ stageId, children }: { stageId: StageId; children: ReactNo
         {nextStage && (
           <div className="stage-continue">
             <span>Connected next</span>
-            <Link to={nextStage.path}>{nextStage.label}<span aria-hidden="true"> →</span></Link>
+            <Link to={sandboxPrefix + nextStage.path}>{nextStage.label}<span aria-hidden="true"> →</span></Link>
           </div>
         )}
       </main>
-      <NarrativeRail stageId={stageId} scenario={scenario} />
+      <NarrativeRail stageId={stageId} scenario={scenario} pathPrefix={sandboxPrefix} />
     </div>
   );
 }
@@ -94,6 +96,8 @@ function ProductDemandTable() {
 }
 
 export function IntroPage() {
+  const location = useLocation();
+  const sandboxPrefix = location.pathname.startsWith("/demo") ? "/demo" : "";
   const scenario = useDemoStore((state) => state.scenario);
   const forecast = getHeroForecast(scenario);
   const inventory = getHeroInventory(scenario);
@@ -116,7 +120,7 @@ export function IntroPage() {
           <h2>One supply chain story, from <em>plan to delivery.</em></h2>
           <p>Follow one simulated product through a Back-to-School demand signal, replenishment, warehouse execution, fulfillment, and delivery visibility.</p>
           <div className="intro-actions">
-            <Link className="button button--primary" to="/demand">Begin guided journey <span aria-hidden="true">→</span></Link>
+            <Link className="button button--primary" to={sandboxPrefix + "/demand"}>Begin guided journey <span aria-hidden="true">→</span></Link>
             <span className="duration-note">ABOUT 7 MINUTES <span aria-hidden="true">·</span> 8 STAGES</span>
           </div>
         </div>

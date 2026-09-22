@@ -10,7 +10,7 @@ import {
   getCurrentScenarioDate,
 } from "../../domain/selectors";
 
-export function NarrativeRail({ stageId, scenario }: { stageId: StageId; scenario: DemoScenario }) {
+export function NarrativeRail({ stageId, scenario, pathPrefix = "" }: { stageId: StageId; scenario: DemoScenario; pathPrefix?: string }) {
   const stage = getStageDefinition(stageId);
   const nextStage = getNextStage(stageId);
   const order = getHeroOrder(scenario);
@@ -36,7 +36,7 @@ export function NarrativeRail({ stageId, scenario }: { stageId: StageId; scenari
         <span className="story-label">Connection</span>
         <p>{stage.nextConnection}</p>
         {nextStage && (
-          <Link className="story-link" to={nextStage.path}>
+          <Link className="story-link" to={pathPrefix + nextStage.path}>
             Continue to {nextStage.shortLabel} <span aria-hidden="true">→</span>
           </Link>
         )}
@@ -44,9 +44,9 @@ export function NarrativeRail({ stageId, scenario }: { stageId: StageId; scenari
       <div className="story-entities">
         <span className="story-label">Hero entities</span>
         <div className="entity-stack">
-          <Link to="/sourcing"><OperationalId>{purchaseOrder?.id ?? "—"}</OperationalId><StatusBadge status={purchaseOrder?.status ?? "DRAFT"} /></Link>
-          <Link to="/orders"><OperationalId>{order?.id ?? "—"}</OperationalId><StatusBadge status={order?.status ?? "NEW"} /></Link>
-          <Link to="/shipment"><OperationalId>{shipment?.id ?? "—"}</OperationalId><StatusBadge status={shipment?.status ?? "PLANNED"} /></Link>
+          <Link to={pathPrefix + "/sourcing"}><OperationalId>{purchaseOrder?.id ?? "—"}</OperationalId><StatusBadge status={purchaseOrder?.status ?? "DRAFT"} /></Link>
+          <Link to={pathPrefix + "/orders"}><OperationalId>{order?.id ?? "—"}</OperationalId><StatusBadge status={order?.status ?? "NEW"} /></Link>
+          <Link to={pathPrefix + "/shipment"}><OperationalId>{shipment?.id ?? "—"}</OperationalId><StatusBadge status={shipment?.status ?? "PLANNED"} /></Link>
         </div>
       </div>
       <div className="scenario-date">

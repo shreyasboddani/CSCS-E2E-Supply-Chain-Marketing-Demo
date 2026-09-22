@@ -19,20 +19,21 @@ export function DemoShell() {
   const navigate = useNavigate();
   const reduceMotion = useReducedMotion();
   const progress = getJourneyProgress(scenario);
-  const activeStage = stageDefinitions.find((stage) => stage.path === location.pathname)?.id ?? "intro";
+  const sandboxPrefix = location.pathname.startsWith("/demo") ? "/demo" : "";
+  const activeStage = stageDefinitions.find((stage) => sandboxPrefix + stage.path === location.pathname)?.id ?? "intro";
   const scenarioDate = formatScenarioDate(getCurrentScenarioDate(scenario));
 
   const closeResetDialog = () => setResetOpen(false);
   const confirmReset = () => {
     resetScenario();
     setResetOpen(false);
-    navigate("/intro");
+    navigate(sandboxPrefix + "/intro");
   };
 
   return (
     <div className="app-shell">
       <header className="topbar">
-        <Link to="/intro" className="brand-lockup" aria-label="CSCS SCOTI concept demo home">
+        <Link to="/" className="brand-lockup" aria-label="CSCS SCOTI concept story home">
           <img className="cscs-logo" src="/brand/cscs-logo.svg" alt="CSCS" />
           <span className="brand-divider" aria-hidden="true" />
           <span className="brand-copy"><strong>SCOTI<sup>™</sup></strong><small>END-TO-END DEMO</small></span>
@@ -44,6 +45,7 @@ export function DemoShell() {
           <span>{scenarioDate}</span>
         </div>
         <div className="topbar-actions">
+          <Link to="/" className="topbar-story-link">Story</Link>
           <div className="mode-switch" aria-label="Navigation mode">
             <button type="button" aria-pressed={mode === "guided"} onClick={() => setMode("guided")}>Guided</button>
             <button type="button" aria-pressed={mode === "explore"} onClick={() => setMode("explore")}>Explore</button>
@@ -57,7 +59,7 @@ export function DemoShell() {
       <div className="shell-body">
         <aside className="sidebar">
           <div className="workspace-label"><span className="workspace-mark" aria-hidden="true">S</span><div><strong>SCOTI™ journey</strong><small>CONCEPT WORKSPACE</small></div></div>
-          <JourneyProgress completedStages={progress.completedStages} />
+          <JourneyProgress completedStages={progress.completedStages} pathPrefix={sandboxPrefix} />
           <div className="sidebar-bottom">
             <span className="sidebar-scenario-label">SCENARIO SCOPE</span>
             <p>{scenario.warehouses.length} warehouse <i /> {scenario.products.length} products</p>
