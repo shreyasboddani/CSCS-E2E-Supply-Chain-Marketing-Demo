@@ -28,7 +28,7 @@ export const appRoutes: RouteObject[] = [
       { path: "fulfillment", element: <FulfillmentPage /> },
       { path: "shipment", element: <ShipmentPage /> },
       { path: "control-tower", element: <ControlTowerPage /> },
-      { path: "*", element: <Navigate to="/intro" replace /> },
+      { path: "*", element: <Navigate to="/demo/intro" replace /> },
     ],
   },
   {

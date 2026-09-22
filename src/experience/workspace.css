@@ -1,0 +1,321 @@
+/* The operational workspace has a denser rhythm than the marketing story. */
+@media (max-width: 1100px) {
+  .app-shell .topbar-context { display: none; }
+  .app-shell .kpi-grid--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.app-shell .brand-copy strong {
+  color: var(--brand-indigo);
+  background: none;
+}
+.app-shell .sidebar {
+  background: #f9fbfe;
+  box-shadow: none;
+  min-height: 0;
+}
+.app-shell .workspace-mark {
+  border-radius: 50%;
+  background: #e4edfc;
+  color: #2b67d7;
+  border: 1px solid #c9d8f4;
+}
+.app-shell .stage-main {
+  max-width: 1600px;
+  padding: 34px clamp(22px, 2.6vw, 46px) 45px;
+}
+.app-shell .stage-header h1 {
+  font-size: 34px;
+  letter-spacing: -0.045em;
+  font-weight: 550;
+}
+.app-shell .stage-header p {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 620px;
+}
+.app-shell .stage-eyebrow,
+.app-shell .eyebrow {
+  font-size: 10px;
+}
+.app-shell .card {
+  border: 1px solid #dce5f0;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px #26446b04;
+}
+.app-shell .kpi-card {
+  background: #fff;
+  padding: 23px;
+}
+.app-shell .kpi-card--accent {
+  background: #eaf2ff;
+  border-color: #c4d9f9;
+}
+.app-shell .kpi-value {
+  font-size: 40px;
+  font-weight: 450;
+  letter-spacing: -0.06em;
+}
+.app-shell .kpi-detail,
+.app-shell .kpi-unit {
+  font-size: 11px;
+}
+.app-shell .section-header h2 {
+  font-size: 18px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+}
+.app-shell th {
+  font-size: 10px;
+}
+.app-shell td {
+  font-size: 12px;
+  padding-block: 18px;
+}
+.app-shell .table-subline {
+  font-size: 10px;
+}
+.app-shell .journey-label {
+  font-size: 12px;
+}
+.app-shell .journey-link {
+  min-height: 49px;
+}
+.app-shell .story-block p,
+.app-shell .story-next p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.app-shell .story-label {
+  font-size: 9px;
+}
+.app-shell .stage-action {
+  padding: 21px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px #244c7908;
+}
+.app-shell .stage-action-copy strong {
+  font-size: 15px;
+}
+.app-shell .stage-action-copy > span:last-child {
+  font-size: 12px;
+}
+.app-shell .button {
+  min-height: 42px;
+}
+.app-shell .connected-thread {
+  padding: 16px;
+  border-radius: 6px;
+  background: #fff;
+}
+.app-shell .thread-node {
+  font-size: 10px;
+}
+.app-shell .status-badge {
+  font-size: 9px;
+  letter-spacing: 0.03em;
+}
+.stage-layout--intro,
+.stage-layout--control-tower {
+  grid-template-columns: minmax(0, 1fr);
+}
+.stage-layout--intro .story-rail,
+.stage-layout--control-tower .story-rail {
+  border-left: 0;
+  border-top: 1px solid #dce5f0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  padding: 25px 35px;
+}
+.stage-layout--intro .story-rail-heading,
+.stage-layout--control-tower .story-rail-heading {
+  grid-column: 1 / -1;
+}
+.stage-layout--intro .intro-hero {
+  position: relative;
+  grid-template-columns: 0.9fr 1.1fr;
+  padding: 45px 35px;
+  min-height: 400px;
+  border-radius: 9px;
+  box-shadow: none;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 80% 50%, #e1edf9, #f8fbfe 70%);
+}
+.stage-layout--intro .intro-copy h2 {
+  font-size: clamp(34px, 3.4vw, 54px);
+  font-weight: 550;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+.stage-layout--intro .intro-copy > p {
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 400px;
+}
+.stage-layout--intro .intro-actions {
+  flex-wrap: wrap;
+}
+.workspace-world {
+  height: 370px;
+  margin: -20px -30px -20px 0;
+}
+.workspace-module-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.workspace-module-links a {
+  position: relative;
+  background: white;
+  padding: 25px 20px;
+  border: 1px solid #dce6f2;
+  border-radius: 7px;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+.workspace-module-links a:hover {
+  transform: translateY(-3px);
+  border-color: #a4c4f0;
+}
+.workspace-module-links a > span {
+  color: #7595c3;
+  font: 10px var(--font-mono);
+}
+.workspace-module-links strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 550;
+  margin: 14px 0 10px;
+  letter-spacing: -0.02em;
+}
+.workspace-module-links p {
+  color: #7788a2;
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 0;
+}
+.workspace-module-links b {
+  position: absolute;
+  top: 21px;
+  right: 19px;
+  color: #326fe1;
+  font-size: 17px;
+  font-weight: 400;
+}
+.workspace-warehouse-model {
+  height: 330px;
+  background: #eff5fb;
+  border-radius: 5px;
+  margin-block: 16px;
+}
+.workspace-tower-experience {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(285px, 1fr);
+  gap: 20px;
+}
+.workspace-tower-world {
+  border: 1px solid #d8e4ef;
+  background: #eaf2fa;
+  border-radius: 9px;
+  min-height: 460px;
+}
+.workspace-tower-world .supply-world {
+  height: 100%;
+}
+.journey-console--compact .console-content {
+  padding: 23px;
+}
+.journey-console--compact .console-content h3 {
+  margin: 10px 0 13px;
+}
+.app-shell .timeline-content p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.app-shell .timeline-meta {
+  font-size: 10px;
+}
+@media (max-width: 1260px) {
+  .workspace-module-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stage-layout--intro .intro-hero {
+    grid-template-columns: 1fr;
+    padding-bottom: 0;
+  }
+  .workspace-world {
+    height: 350px;
+    margin: 0;
+  }
+  .stage-layout--intro .intro-copy h2 {
+    max-width: 580px;
+  }
+  .stage-layout--intro .intro-copy > p {
+    max-width: 600px;
+  }
+}
+@media (max-width: 1000px) {
+  .workspace-tower-experience {
+    grid-template-columns: 1fr;
+  }
+  .workspace-tower-world {
+    height: 370px;
+    min-height: 0;
+  }
+  .app-shell .stage-main {
+    padding: 24px;
+  }
+}
+@media (max-width: 760px) {
+  .app-shell .stage-main {
+    padding: 23px 16px;
+  }
+  .app-shell .stage-header h1 {
+    font-size: 28px;
+  }
+  .stage-layout--intro .story-rail,
+  .stage-layout--control-tower .story-rail {
+    grid-template-columns: 1fr;
+    padding: 23px;
+  }
+  .app-shell .kpi-card {
+    padding: 17px;
+  }
+  .app-shell .kpi-value {
+    font-size: 31px;
+  }
+  .app-shell .stage-action {
+    padding: 18px;
+  }
+  .stage-layout--intro .intro-hero {
+    padding: 28px 20px 0;
+  }
+  .stage-layout--intro .intro-copy h2 {
+    font-size: 35px;
+  }
+  .workspace-world {
+    height: 310px;
+    margin-inline: -20px;
+  }
+  .workspace-module-links {
+    gap: 10px;
+  }
+  .workspace-module-links a {
+    padding: 19px 15px;
+  }
+  .workspace-module-links strong {
+    font-size: 14px;
+  }
+  .workspace-module-links p {
+    font-size: 10px;
+  }
+  .app-shell .thread-node {
+    font-size: 9px;
+  }
+  .app-shell .journey-link {
+    min-height: 38px;
+  }
+  .app-shell .journey-label {
+    font-size: 10px;
+  }
+}

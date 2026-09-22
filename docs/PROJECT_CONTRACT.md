@@ -14,7 +14,7 @@ Build a self-contained, deterministic, browser-only 5–10 minute concept demons
 - Node 22.12 or newer; npm
 - Canonical seed: src/data/scenario.json; deterministic generator: scripts/generate_mock_data.py
 - No server, database, authentication, external carrier/map/AI API, GraphQL, Next.js, Express, Firebase, Supabase, microservices, or TanStack Query in v1.
-- Three.js and React Three Fiber may be added later as optional progressive enhancement. The core demo must remain useful without WebGL.
+- Three.js is a lazy-loaded progressive enhancement for original warehouse and transport models. The core demo remains useful without WebGL through an SVG fallback. Business state stays in the domain and store.
 
 ## Fictional scenario and locked identifiers
 
@@ -79,7 +79,7 @@ The domain layer owns deterministic, guarded transitions: approve the requiremen
 
 ## Out of scope for v1
 
-Backorders, partial or split shipments, returns, cancellations, damaged stock, rejected receipts, supplier bidding, billing, invoicing, payments, approval chains, multiple scenarios or warehouses, real integrations, external maps/carrier tracking, authentication, backend/database, AI assistant, advanced forecasting, and complex 3D scenes.
+Backorders, partial or split shipments, returns, cancellations, damaged stock, rejected receipts, supplier bidding, billing, invoicing, payments, approval chains, multiple scenarios or warehouses, real integrations, external maps/carrier tracking, authentication, backend/database, AI assistant, and advanced forecasting. Original illustrative 3D warehouse scenes are included in the current presentation scope; they do not change the data model or represent a real facility.
 
 ## Branding and disclosure
 

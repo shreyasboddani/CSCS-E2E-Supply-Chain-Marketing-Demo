@@ -26,6 +26,8 @@ The demo is an original concept informed by public CSCS/SCOTI positioning. It do
 
 ## Direct handbook review
 
+The spatial redesign adds an original Three.js warehouse and transport illustration, seven selectable stage explanations, and a ten-action walkthrough on the marketing page. These read the same scenario as the operational routes. The Python generator and locked data contract are unchanged. Browser visual approval remains pending; automated integration coverage includes progression to delivery, reset, and shared state after opening Control Tower.
+
 The handbook PDF was reviewed directly on 2026-09-21. Its product requirements remain governing: a newcomer can follow one fictional supply-chain lifecycle in 5-10 minutes; every stage reads connected persistent mock data; the narrative explains what happens and why it matters; and the result is self-contained, clickable, testable, and shareable.
 
 The user requested React, so the handbook's Streamlit framework setup is adapted to React 19, TypeScript, Vite, React Router, Zustand, and canonical JSON. The data-generation discipline, Git workflow, verification expectations, staged journey, original-concept constraint, and optional AI-layer boundary are retained. The new story-to-sandbox journey is documented in `docs/FINAL_DEMO_FLOW.md`.

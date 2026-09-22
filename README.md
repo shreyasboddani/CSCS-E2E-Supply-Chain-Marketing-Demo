@@ -28,9 +28,9 @@ The app is a React 19 + TypeScript + Vite SPA. React Router keeps all eight stag
 
 ## Final experience
 
-`/` is the cinematic CSCS / SCOTI concept story. It uses scroll-linked SVG/CSS spatial scenes to trace a single connected thread through planning, warehouse execution, movement, and orchestration, then opens the real interactive sandbox at `/demo/intro`. The sandbox retains the eight original stage routes for direct presentation and testing. See [experience direction](docs/EXPERIENCE_DIRECTION.md) and [final demo flow](docs/FINAL_DEMO_FLOW.md).
+`/` is the cinematic CSCS / SCOTI concept story. It uses an original Three.js warehouse, interactive camera views, a scroll-controlled roof reveal, a planning view, and a ten-action scenario console. Continue into the shared interactive sandbox at `/demo/intro`. The sandbox retains the eight original stage routes for direct presentation and testing. See [experience direction](docs/EXPERIENCE_DIRECTION.md) and [final demo flow](docs/FINAL_DEMO_FLOW.md).
 
-Three.js / React Three Fiber is an optional future extension. The initial experience does not depend on WebGL.
+Three.js loads near visible model sections and renders only when the scene changes. An original SVG warehouse remains available while loading or when WebGL fails. No external model or texture downloads are required.
 
 ## Stack
 

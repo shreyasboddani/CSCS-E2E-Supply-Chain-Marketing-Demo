@@ -1,40 +1,41 @@
-# Experience direction
+# SCOTI spatial marketing experience
 
-## Creative direction
+## Art direction
 
-The experience is an original, light CSCS / SCOTI concept. It uses white, ice-blue, blue-gray, indigo, and restrained teal accents to make the operating story feel precise and dimensional. SCOTI is the connective thread through the story; the fictional retail scenario supplies the operational evidence.
+White editorial surfaces, ink typography, restrained CSCS blue, and a detailed architectural supply-chain model. The opening pairs a large short statement with the 3D operation. A product explorer, pinned narrative, planning evidence, stage index, and interactive operation give the page different compositions and pacing.
 
-The story uses one dominant idea per viewport, short supporting copy, generous whitespace, and purpose-built visual systems instead of repeated feature-card grids. The final sandbox intentionally changes to a denser operational grammar while retaining the same color, type, and connected-thread language.
+The model is original illustrative geometry, not a digital twin of a real customer facility. Product quantities and status labels come from the canonical scenario. Geometric racks, trees, and buildings provide visual context rather than representing actual counts or geography.
 
-## Reference principles
+## Story and interactions
 
-The research pass reviewed current Apple product overview pages, Framer Marketplace product templates, and CSCS public product positioning. The implementation takes principles, not layouts, assets, copy, or product interfaces:
+1. **See the whole. Move as one.** Architectural supply-chain hero with shared inventory and shipment labels.
+2. **Look closer.** Keyboard-accessible Network, Warehouse, and Transport tabs move the camera and open the roof. Drag or use rotation buttons to explore.
+3. **Planning.** A scroll-linked product surface shows the current forecast, target, available stock, and derived replenishment requirement.
+4. **Warehouse to delivery.** A pinned model changes camera angle with scroll, lifts the roof during the fulfillment beat, and pulls back for transport. Scroll changes the presentation only; it never executes business actions.
+5. **Every handoff.** Seven selectable stages explain the operational purpose and link to the actual workspace.
+6. **Your turn.** A console executes the next guarded domain action. Stock, shipment position, status, and the activity message reflect the same state across story and sandbox.
+7. **Continue exploring.** Enter the full demo or open the official CSCS platform page.
 
-- Apple product pages use large type, strong whitespace, a small number of visual highlights, and progressive disclosure before deep detail. [MacBook Pro overview](https://www.apple.com/macbook-pro/)
-- Framer's current product templates emphasize product clarity, focused conversion paths, editorial composition, and showing how a product works rather than surrounding it with generic dashboard grids. [The Current template](https://www.framer.com/marketplace/templates/the-current/), [Framer SaaS templates](https://www.framer.com/marketplace/templates/categories/saas/)
-- CSCS publicly positions SCOTI across planning, warehouse operations, transportation, integration, visibility, and real-time decisioning. The concept therefore tells one connected plan-to-delivery story without presenting its original screens as production UI. [CSCS platform](https://cscs.io/ai-supply-chain-platform/), [SCOTI platform](https://cscs.io/the-scoti-platform-intelligence-autonomy-end-to-end-supply-chain-control/)
+## Shared architecture
 
-## Story chapters
+- `src/domain/presentation.ts`: shared presentation selectors and next-action descriptions.
+- `src/experience/StoryExperience.tsx`: marketing composition.
+- `src/experience/WarehouseJourney.tsx`: scroll-controlled warehouse sequence.
+- `src/experience/SupplyWorld.tsx`: lazy Three.js setup and SVG fallback.
+- `src/experience/three/createSupplyScene.ts`: authored geometry, camera, materials, rendering, and cleanup.
+- `src/experience/JourneyConsole.tsx`: accessible next-action console used on the story and Control Tower.
+- Existing domain transitions and canonical JSON remain authoritative. No scenario IDs, quantities, lifecycle values, or dates changed.
 
-1. **Opening:** isolated planning, warehouse, transport, and visibility signals gain a connected SCOTI thread.
-2. **Connected layer:** the operating areas converge around a single connective core.
-3. **Planning into action:** the canonical 120 forecast, 40 available, 20 target, and 100-unit requirement appear as one decision.
-4. **Warehouse execution:** a spatial, architectural warehouse representation makes RCPT-1001 and A-03-02 visible.
-5. **Movement and visibility:** the same operational thread continues from East Distribution Center through SHP-1001.
-6. **Orchestration:** the network resolves into a Control Tower concept and opens the real sandbox.
+## Performance and accessibility
 
-## Scroll and spatial behavior
+The Three.js chunk is dynamically imported only near a visible scene. Pixel ratio is capped at 1.6; textures and downloaded models are unnecessary. Geometry and materials are reused. Render frames run for camera, roof, or shipment changes and stop when settled, offscreen, or in a hidden tab. Resize and visibility observers are cleaned up with GPU resources on unmount. WebGL failure or context loss leaves an intentional SVG model and all DOM controls.
 
-Story chapters are pinned on desktop and derive their visual progress from a small `requestAnimationFrame` scroll signal. The thread draws, nodes converge, the planning decision reveals, warehouse rack A-03-02 illuminates, and the delivery route advances as scrolling progresses. Mobile replaces pinning with shorter sequential scenes.
+Mobile layouts stack the story and console, remove pinned travel, and preserve vertical touch scrolling. Reduced motion disables camera interpolation and long pinned sequences while preserving the three narrative beats. Model controls are keyboard buttons, the explorer has arrow-key tabs, status changes are announced, reset uses a focus-contained confirmation dialog, and content has semantic headings and a skip link.
 
-The spatial scenes are original DOM, CSS, and SVG compositions. They provide an intentional fallback on every device, avoid a new heavy WebGL dependency, and keep all controls and operational content accessible HTML. The warehouse and route are state-aware: receipt and shipment status change their labels in the story and the sandbox continues to use the same canonical Zustand scenario.
+## Research principles
 
-## Marketing to sandbox transition
+The original research used [Apple product storytelling](https://www.apple.com/macbook-pro/) for clear hierarchy and progressive detail, [Framer product examples](https://www.framer.com/marketplace/templates/the-current/) for composition and product clarity, and [CSCS platform positioning](https://cscs.io/ai-supply-chain-platform/) for supported language. No external template or Apple visual asset is used. Figma Community was blocked during research and was not visually inspected. Three.js APIs were checked against the [official documentation](https://threejs.org/docs/).
 
-The Control Tower scene leads into a browser-like workspace surface. Its final CTA opens the existing React sandbox, whose guarded actions update the canonical scenario. The old direct stage URLs remain available for a presenter or tests; `/demo/intro` is the primary sandbox entry from the story.
+## Review status
 
-## Responsive, performance, and reduced motion
-
-Desktop gets the full pinned presentation at the target 1366px, 1440px, 1512px, and 1920px widths. At 800px and below, scenes become stacked narrative compositions, the marketing navigation simplifies, and the sandbox remains its responsive operational UI.
-
-The experience has no network runtime dependency and adds no large animation or 3D package. A single passive scroll listener schedules at most one animation frame. `prefers-reduced-motion` removes pinning and transforms while preserving every story message and link.
+Automated coverage verifies lifecycle progression, canonical quantities, reset, cross-route state continuity, and keyboard exploration. Browser screenshot review is still pending: the requested Browser plugin returned no available browser. Passing build and DOM tests is not a substitute for final visual approval of desktop, mobile, WebGL lighting, or animation pacing.
